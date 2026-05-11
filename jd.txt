@@ -1,0 +1,15 @@
+Title: Senior Data Analyst - Melbourne VIC
+Company: Public Sector People (based on posting)
+Location: Melbourne, VIC
+
+Responsibilities:
+- Leading data discovery, profiling and cleansing across complex legacy systems
+- Designing and supporting data migration and reconciliation activities
+- Working closely with stakeholders to uncover hidden business rules and data nuances
+- Supporting ERP implementation and data enablement initiatives
+- Acting as a key liaison between Council, project teams and external vendors (if engaged)
+- Delivering insights and reporting that support informed decision making
+- Experience in data migration within ERP or finance system projects
+- Strong SQL and data analysis capability
+- Engage confidently with finance stakeholders and technical teams
+- Experience handling data sensitivity and stakeholder management
