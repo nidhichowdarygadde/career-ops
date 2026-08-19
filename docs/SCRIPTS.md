@@ -19,6 +19,7 @@ All scripts live in the project root as `.mjs` modules and are exposed via `npm 
 | `npm run rollback` | `update-system.mjs rollback` | Rollback last update |
 | `npm run liveness` | `check-liveness.mjs` | Test if job URLs are still active |
 | `npm run scan` | `scan.mjs` | Zero-token portal scanner |
+| `npm run apply-pack` | `generate-apply-pack.mjs` | CSV → light fit score → tailored CV PDF + cover letter |
 
 ---
 
@@ -216,3 +217,19 @@ npm run scan
 ```
 
 **Exit codes:** `0` scan completed, `1` configuration error or no portals.yml found.
+
+---
+
+## apply-pack
+
+Fast document pipeline: CSV of jobs (URL + JD text) → light fit score → tailored CV PDF + cover letter DOCX. Does not submit applications. Requires `GEMINI_API_KEY` in `.env` (not needed for `--dry-run`).
+
+```bash
+npm run apply-pack -- --csv data/jobs.csv
+npm run apply-pack -- --csv templates/jobs.example.csv --dry-run
+npm run apply-pack -- --csv data/jobs.csv --limit 3 --parallel 2
+```
+
+CSV columns: `company,role,url,location,salary,jd_text`. `jd_text` may be the full JD or a relative path to a `.txt`/`.md` file. See `templates/jobs.example.csv`.
+
+**Exit codes:** `0` success (SKIP rows are success), `1` missing CSV/API key or one or more job errors.

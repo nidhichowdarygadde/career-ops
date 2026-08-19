@@ -16,7 +16,8 @@
     "liveness": "node check-liveness.mjs",
     "scan": "node scan.mjs",
     "patterns": "node analyze-patterns.mjs",
-    "gemini:eval": "node gemini-eval.mjs"
+    "gemini:eval": "node gemini-eval.mjs",
+    "apply-pack": "node generate-apply-pack.mjs"
   },
   "keywords": [
     "ai",
@@ -39,5 +40,8 @@
     "dotenv": "^17.0.0",
     "js-yaml": "^4.1.1",
     "playwright": "^1.58.1"
+  },
+  "devDependencies": {
+    "docx": "^9.7.1"
   }
 }

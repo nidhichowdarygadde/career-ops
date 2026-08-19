@@ -71,6 +71,7 @@ const scripts = [
   { name: 'merge-tracker.mjs', expectExit: 0 },
   { name: 'analyze-patterns.mjs --self-test', expectExit: 0 },
   { name: 'update-system.mjs check', expectExit: 0 },
+  { name: 'generate-apply-pack.mjs --help', expectExit: 0 },
 ];
 
 for (const { name, allowFail } of scripts) {
@@ -161,8 +162,8 @@ console.log('\n5. Data contract validation');
 const systemFiles = [
   'CLAUDE.md', 'VERSION', 'DATA_CONTRACT.md',
   'modes/_shared.md', 'modes/_profile.template.md',
-  'modes/oferta.md', 'modes/pdf.md', 'modes/scan.md',
-  'templates/states.yml', 'templates/cv-template.html',
+  'modes/oferta.md', 'modes/pdf.md', 'modes/scan.md', 'modes/apply-pack.md',
+  'templates/states.yml', 'templates/cv-template.html', 'templates/jobs.example.csv',
   '.claude/skills/career-ops/SKILL.md',
 ];
 
@@ -264,6 +265,7 @@ const expectedModes = [
   '_shared.md', '_profile.template.md', 'oferta.md', 'pdf.md', 'scan.md',
   'batch.md', 'apply.md', 'auto-pipeline.md', 'contacto.md', 'deep.md',
   'ofertas.md', 'pipeline.md', 'project.md', 'tracker.md', 'training.md',
+  'apply-pack.md',
 ];
 
 for (const mode of expectedModes) {

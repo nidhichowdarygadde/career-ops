@@ -10,6 +10,7 @@ System-layer template files used by career-ops scripts and modes. These files ar
 | `cv-template.tex` | `generate-latex.mjs` | LaTeX/Overleaf template for ATS-optimized CV PDFs |
 | `portals.example.yml` | Onboarding | Example portal scanner configuration (copy to `portals.yml` to activate) |
 | `states.yml` | `verify-pipeline.mjs`, `normalize-statuses.mjs`, `merge-tracker.mjs` | Canonical application states and their aliases |
+| `jobs.example.csv` | `generate-apply-pack.mjs` | Example job CSV for fast apply packs (copy to `data/jobs.csv`) |
 
 ### cv-template.html
 
@@ -49,3 +50,9 @@ Pre-configured portal scanner with 45+ tracked companies and search queries. Con
 Defines the 8 canonical application states (`Evaluated`, `Applied`, `Responded`, `Interview`, `Offer`, `Rejected`, `Discarded`, `SKIP`) with aliases for common variants. All pipeline scripts validate statuses against this file.
 
 **Do not rename states** -- the dashboard and all scripts depend on these exact IDs. You can add aliases if you encounter new variants that should map to an existing state.
+
+### jobs.example.csv
+
+Example input for `npm run apply-pack`. Columns: `company`, `role`, `url`, `location`, `salary`, `jd_text`.
+
+**To use:** copy to `data/jobs.csv` (user layer) and replace the sample rows with real JDs. `jd_text` can be quoted multiline JD text, or a relative path such as `jds/amp-pc-analyst.txt`. The apply-pack script does not fetch URLs.

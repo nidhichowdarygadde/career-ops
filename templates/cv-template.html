@@ -110,6 +110,12 @@
     color: #ccc;
   }
 
+  .contact-row-secondary {
+    margin-top: 4px;
+    font-size: 10px;
+    color: #666;
+  }
+
   /* === SECTIONS === */
   .section {
     margin-bottom: 18px;
@@ -158,6 +164,24 @@
     border: 1px solid hsl(187, 40%, 88%);
   }
 
+  /* === KEY HIGHLIGHTS === */
+  .highlights-list {
+    padding-left: 16px;
+    margin: 0;
+  }
+
+  .highlights-list li {
+    font-size: 10.5px;
+    line-height: 1.55;
+    color: #333;
+    margin-bottom: 4px;
+  }
+
+  .highlights-list li strong {
+    font-weight: 600;
+    color: #222;
+  }
+
   /* === WORK EXPERIENCE === */
   .job {
     margin-bottom: 14px;
@@ -171,24 +195,24 @@
     margin-bottom: 4px;
   }
 
-  .job-company {
+  .job-role {
     font-family: 'Space Grotesk', sans-serif;
     font-size: 12.5px;
     font-weight: 600;
+    color: #1a1a2e;
+  }
+
+  .job-company {
+    font-size: 11px;
+    font-weight: 500;
     color: hsl(270, 70%, 45%);
+    margin-bottom: 2px;
   }
 
   .job-period {
     font-size: 10.5px;
     color: #777;
     white-space: nowrap;
-  }
-
-  .job-role {
-    font-size: 11px;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 6px;
   }
 
   .job-location {
@@ -268,6 +292,8 @@
   .edu-org {
     color: hsl(270, 70%, 45%);
     font-weight: 500;
+    font-size: 10.5px;
+    margin-top: 1px;
   }
 
   .edu-year {
@@ -284,6 +310,23 @@
   }
 
   /* === CERTIFICATIONS === */
+  .cert-list {
+    padding-left: 16px;
+    margin: 0;
+  }
+
+  .cert-list li {
+    font-size: 10px;
+    line-height: 1.55;
+    color: #333;
+    margin-bottom: 3px;
+  }
+
+  .cert-list .cert-org {
+    color: hsl(270, 70%, 45%);
+    font-weight: 600;
+  }
+
   .cert-item {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(90px, max-content) 44px;
@@ -314,13 +357,14 @@
   /* === SKILLS === */
   .skills-grid {
     display: flex;
-    flex-wrap: wrap;
-    gap: 6px 14px;
+    flex-direction: column;
+    gap: 3px;
   }
 
   .skill-item {
     font-size: 10.5px;
     color: #444;
+    line-height: 1.5;
   }
 
   .skill-category {
@@ -378,7 +422,23 @@
     <div class="summary-text">{{SUMMARY_TEXT}}</div>
   </div>
 
-  <!-- CORE COMPETENCIES -->
+  <!-- KEY HIGHLIGHTS -->
+  <div class="section">
+    <div class="section-title">{{SECTION_HIGHLIGHTS}}</div>
+    <ul class="highlights-list">
+{{HIGHLIGHTS}}
+    </ul>
+  </div>
+
+  <!-- SKILLS -->
+  <div class="section avoid-break">
+    <div class="section-title">{{SECTION_SKILLS}}</div>
+    <div class="skills-grid">
+{{SKILLS}}
+    </div>
+  </div>
+
+  <!-- CORE COMPETENCIES (optional; hidden when empty) -->
   <div class="section">
     <div class="section-title">{{SECTION_COMPETENCIES}}</div>
     <div class="competencies-grid">
@@ -408,12 +468,6 @@
   <div class="section avoid-break">
     <div class="section-title">{{SECTION_CERTIFICATIONS}}</div>
     {{CERTIFICATIONS}}
-  </div>
-
-  <!-- SKILLS -->
-  <div class="section avoid-break">
-    <div class="section-title">{{SECTION_SKILLS}}</div>
-    {{SKILLS}}
   </div>
 
 </div>

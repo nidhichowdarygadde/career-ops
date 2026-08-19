@@ -1,0 +1,29 @@
+company,role,url,location,salary,jd_text
+Example Analytics Co,Graduate Data Analyst,https://example.com/jobs/graduate-data-analyst,Melbourne VIC hybrid,AUD 85k + super,"About the role
+We are hiring a Graduate Data Analyst to turn operational data into clear reporting for business stakeholders.
+
+What you will do
+- Write SQL against warehouse tables and validate data quality
+- Build and maintain Power BI and Tableau dashboards
+- Clean and wrangle datasets in Python (Pandas)
+- Document reporting logic, data lineage, and business rules
+- Partner with stakeholders to clarify requirements and present findings
+
+What we look for
+- SQL and Python for analysis
+- Dashboarding in Power BI or Tableau
+- Strong communication with technical and non-technical audiences
+- Full Australian work rights"
+Example Consulting,Business Analyst,https://example.com/jobs/business-analyst,Melbourne VIC hybrid,not listed,"About the role
+Business Analyst supporting process documentation, requirements gathering, and reporting for a transformation program.
+
+What you will do
+- Engage stakeholders and document current-state processes and business rules
+- Translate requirements into reporting and system designs
+- Work in Jira and Confluence
+- Use SQL and Excel to analyse operational data
+
+What we look for
+- Requirements gathering and stakeholder communication
+- SQL, Excel, and structured documentation
+- Hybrid Melbourne"
