@@ -79,7 +79,7 @@ OPTIONS
   --limit N            Process only the first N rows
   --dry-run            Parse CSV and print the plan; no API calls
   --include-stretch    Keep adjacent stretch roles (do not skip 3.0–3.4 or coordinator-style)
-  --out <dir>          Output root (default: output/apply-packs)
+  --out <dir>          Output directory (default: output/). Files are written flat; no per-job folders.
   --model-score <id>   Gemini model for scoring (default: ${DEFAULT_SCORE_MODEL})
   --model-tailor <id>  Gemini model for tailoring (default: ${DEFAULT_TAILOR_MODEL})
   --skip-compile       Write markdown only (no PDF/DOCX)
@@ -102,7 +102,7 @@ function parseArgs(argv) {
     limit: null,
     dryRun: false,
     includeStretch: false,
-    out: join(ROOT, 'output', 'apply-packs'),
+    out: join(ROOT, 'output'),
     modelScore: DEFAULT_SCORE_MODEL,
     modelTailor: DEFAULT_TAILOR_MODEL,
     skipCompile: false,
@@ -633,7 +633,8 @@ function candidateName(profileYmlText) {
 async function processJob(job, ctx) {
   const started = Date.now();
   const slug = `${slugify(job.company)}-${slugify(job.role)}`;
-  const dir = join(ctx.outDir, slug);
+  const date = new Date().toISOString().slice(0, 10);
+  const dir = ctx.outDir;
   mkdirSync(dir, { recursive: true });
 
   const result = {
@@ -707,7 +708,7 @@ async function processJob(job, ctx) {
       skip_flags: skipFlags,
       score: Number.isFinite(numericScore) ? numericScore : score.score,
     };
-    writeFileSync(join(dir, 'score.json'), JSON.stringify(scorePayload, null, 2), 'utf8');
+    writeFileSync(join(dir, `_score-${slug}-${date}.json`), JSON.stringify(scorePayload, null, 2), 'utf8');
 
     result.score = Number.isFinite(numericScore) ? numericScore.toFixed(1) : String(score.score || '');
     result.decision = decision;
@@ -716,7 +717,7 @@ async function processJob(job, ctx) {
     if (decision !== 'APPLY') {
       result.elapsedMs = Date.now() - started;
       writeFileSync(
-        join(dir, 'SKIP.md'),
+        join(dir, `_skip-${slug}-${date}.md`),
         `# SKIP ${job.company} — ${job.role}\n\n**Score:** ${result.score}/5\n**Reason:** ${reason}\n`,
         'utf8'
       );
@@ -753,8 +754,8 @@ async function processJob(job, ctx) {
     cvMarkdown = stripAiPunctuation(cvMarkdown);
     coverMarkdown = stripAiPunctuation(coverMarkdown);
     const candidate = kebabName(ctx.fullName);
-    const cvBase = `cv-${candidate}-${slug}`;
-    const coverBase = `cover-letter-${slug}`;
+    const cvBase = `cv-${candidate}-${slug}-${date}`;
+    const coverBase = `cover-letter-${slug}-${date}`;
     const cvMdPath = join(dir, `${cvBase}.md`);
     const coverMdPath = join(dir, `${coverBase}.md`);
     writeFileSync(cvMdPath, cvMarkdown.endsWith('\n') ? cvMarkdown : `${cvMarkdown}\n`, 'utf8');
@@ -804,7 +805,7 @@ async function processJob(job, ctx) {
       meta,
     };
     qa.warnings = [...(qa.warnings || []), ...extraWarnings];
-    writeFileSync(join(dir, 'qa.json'), JSON.stringify(qa, null, 2), 'utf8');
+    writeFileSync(join(dir, `_qa-${slug}-${date}.json`), JSON.stringify(qa, null, 2), 'utf8');
     const qaBits = [];
     if (qa.errors?.length) qaBits.push(`errors:${qa.errors.length}`);
     if (qa.warnings?.length) qaBits.push(`warn:${qa.warnings.length}`);
@@ -816,7 +817,7 @@ async function processJob(job, ctx) {
     result.reason = (err.message || String(err)).replace(/\s+/g, ' ').slice(0, 300);
     result.elapsedMs = Date.now() - started;
     writeFileSync(
-      join(dir, 'error.txt'),
+      join(dir, `_error-${slug}-${date}.txt`),
       `${result.reason}\n`,
       'utf8'
     );
