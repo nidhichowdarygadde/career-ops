@@ -1,0 +1,73 @@
+candidate:
+  full_name: "Nidhi Chowdary Gadde"
+  email: "nidhichowdarygadde@gmail.com"
+  phone: "+61 451 771 485"
+  location: "Melbourne, VIC, Australia"
+  linkedin: "https://www.linkedin.com/in/nidhi-chowdary-b74016215/"
+  visa_status: "Temporary Graduate visa (subclass 485), full work rights until August 2028"
+
+target_roles:
+  primary:
+    - "AI Solutions Analyst"
+    - "Business Analyst"
+    - "Solutions Analyst"
+    - "Data Analyst"
+    - "Junior Data Analyst"
+    - "Graduate Data Analyst"
+    - "Business Intelligence Analyst"
+    - "Analytics Engineer"
+  archetypes:
+    - name: "AI Solutions Analyst"
+      level: "Junior"
+      fit: "primary"
+      sell_when: "JD emphasizes GenAI, agents, LLM, RAG, automation, D365, enterprise AI"
+    - name: "Business Analyst"
+      level: "Junior/Mid"
+      fit: "primary"
+      sell_when: "JD emphasizes requirements, process, stakeholders, AS-IS/TO-BE, workshops, solution design"
+    - name: "Data Analyst"
+      level: "Graduate/Junior"
+      fit: "primary"
+      sell_when: "JD emphasizes SQL, Python, dashboards, reporting, data cleaning, stakeholder communication"
+    - name: "Business Intelligence Analyst"
+      level: "Graduate/Junior"
+      fit: "primary"
+      sell_when: "JD emphasizes Tableau, Power BI, KPI reporting, operational analytics"
+    - name: "Data Scientist"
+      level: "Graduate"
+      fit: "secondary"
+      sell_when: "JD emphasizes Python, ML modelling, statistical analysis, research projects"
+
+narrative:
+  headline: "Melbourne-based AI solutions and analytics professional contributing to enterprise multi-agent automation, with applied data science depth and stakeholder-ready delivery"
+  superpowers:
+    - "Enterprise AI solution analysis: multi-agent workflows, RAG, D365 automation, and Australian data-residency constraints"
+    - "Translating ambiguous requirements into functional, non-functional, and agent-ready designs with architects and business stakeholders"
+    - "Turning messy operational and public datasets into clean, decision-ready insights"
+    - "Python, SQL, PySpark, and BI tooling across fraud, research, and operations domains"
+  deal_breakers:
+    - "Roles with no path to hands-on analytics or data work"
+
+compensation:
+  target_range: "AUD 80K-100K + super"
+  currency: "AUD"
+  minimum: "AUD 80K + super"
+  location_flexibility: "Melbourne preferred; open to hybrid or remote within Australia"
+  notes: "AUD 80K+ base + super is the floor — higher income strengthens 189/190 permanent residency applications (points test + income threshold). Part-time roles only count if annualised FTE equivalent AND actual earnings meet this bar."
+
+location:
+  country: "Australia"
+  city: "Melbourne"
+  timezone: "AEST/AEDT"
+  visa_status: "Temporary Graduate visa (subclass 485), full work rights until August 2028"
+  onsite_availability: "Hybrid or on-site in Melbourne; full work rights in Australia"
+
+language:
+  modes_dir: modes
+
+cv:
+  source_file: "cv-master"
+  master_pdf_naming: "cv-nidhi-chowdary-gadde-master"
+  section_experience: "Professional Experience"
+  section_community: "Community Leadership"
+  experience_format: "role-dates / company / location (Australian ATS)"
