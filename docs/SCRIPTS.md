@@ -232,4 +232,6 @@ npm run apply-pack -- --csv data/jobs.csv --limit 3 --parallel 2
 
 CSV columns: `company,role,url,location,salary,jd_text`. `jd_text` may be the full JD or a relative path to a `.txt`/`.md` file. See `templates/jobs.example.csv`.
 
+Writes CV PDFs and cover letter DOCXs **flat into `output/`** (dated filenames, no per-job folders). Review those files, then upload them yourself.
+
 **Exit codes:** `0` success (SKIP rows are success), `1` missing CSV/API key or one or more job errors.
