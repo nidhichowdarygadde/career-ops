@@ -97,9 +97,9 @@ Specialisation: ...
 ### Writing Voice (PROFILE MD, mandatory)
 
 - **Senior, not junior.** Ownership and delivery language. No "eager to learn", "seeking to grow", "recent graduate looking to", "exposure to", "passionate", "results-driven", "seasoned". Do not invent extra years of experience.
-- **Professional Summary is first person.** Use "I bring", "I have delivered", "I work with". Forbidden: "Brings Python experience", "Experienced professional who...", "Holds a Master of...".
+- **Professional Summary uses implied professional voice.** No "I currently contribute". No "Brings Python experience". Write senior CV prose: "Data and AI professional currently delivering...". Cover letters stay first person.
 - **No AI punctuation in CV or cover letter.** No em dashes, en dashes, arrows, or decorative symbols. Date ranges: `Mon YYYY - Mon YYYY`. Sentences use comma, colon, or a full stop.
-- **At least 3 bullets on every role**, written toward this JD. Elaborate with real CV MASTER facts and JD vocabulary. Never 1-2 bullets. If over 2 pages, drop a whole role (see drop order). Do not compress below 3. The first Professional Experience role in CV MASTER (current Australian industry role) is the exception: **minimum 5 bullets, default 8**. Never label it intern.
+- **At least 3 bullets on every role**, written toward this JD. Elaborate with real CV MASTER facts and JD vocabulary. Never 1-2 bullets. If over 2 pages, drop a whole role (see drop order). Do not compress below 3. The first Professional Experience role in CV MASTER (current Australian industry role) is the exception: **minimum 5 bullets, default 8 on tailored CVs, all 13 on the master CV**. Never label it intern.
 
 ### Tailoring rules
 
@@ -108,7 +108,7 @@ Follow PROFILE MD CV Formatting, Writing Voice, CV Tailoring Rules, per-role the
 - Source of truth is CV MASTER. GOLD CV is layout only, not summary person or dash style.
 - Rewrite Professional Summary in first person with JD vocabulary. Keep it 3-5 sentences. Visa stays in the header; do not lean on "I just graduated".
 - Reorder and elaborate bullets **within** each role by JD relevance. Keep **3 or more** bullets per role.
-- Keep the first Professional Experience role in CV MASTER (current Australian industry role at Centelon) **always first**, with **5-8 bullets**. Never drop it. Never call it intern, internship, or placement.
+- Keep the first Professional Experience role in CV MASTER (current Australian industry role at Centelon) **always first**, with **5-8 bullets** on tailored CVs and **all 13 bullets** on the master CV. Never drop it. Never call it intern, internship, or placement.
 - Keep Data Engineer (ETL & NLP), Data Scientist (Statistical Modelling), Database Developer, and Software Engineer (Analytics) unless the CV would exceed **2 pages** after shortening wording (still at least 3 bullets each).
 - Drop order if still too long: Community Leadership first, then Machine Learning Engineer, then Research Data Analyst (only if JD is not research/health/public-sector). Then drop further whole roles. Never drop the current Australian industry role. Never drop both Aug 2023 Database + Software Engineer before ETL/NLP or industry roles (Centelon, Cognizant, Phoenix Global). Never go 5 to 4 to 3 to 2; stop at 3 bullets (stop at 5 for the lead industry role).
 - Monash employer line is `Monash University` only. No unit codes, no course names.

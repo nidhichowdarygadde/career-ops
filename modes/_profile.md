@@ -18,7 +18,7 @@
 | **Any role (default lead)** | Current Melbourne industry work: enterprise multi-agent AI, D365 automation, requirements, Australian data residency | cv-master — **AI Solutions Analyst, Centelon Solutions (ALWAYS FIRST)** |
 | AI / GenAI / agents / LLM | Multi-agent architecture, RAG, HITL workflows, LLM integration options, data residency | Centelon — bullets 1, 2, 3, 5, 6 |
 | Business Analyst / solutions / consulting | Functional/non-functional requirements, AS-IS/TO-BE, stakeholder translation, feasibility | Centelon — bullets 7, 8, 2, 6, 1 |
-| Automation / D365 / ERP | Agent-generated application objects, maintenance workflows, process orchestration | Centelon — bullets 6, 2, 1, 7, 8 |
+| Automation / D365 / ERP | D365 Finance and Operations automation, maintenance workflows, process orchestration | Centelon — bullets 10, 11, 3, 1, 12 |
 | Data Analyst | Requirements, integrations, knowledge sources, decision support, stakeholder reporting | Centelon first, then Phoenix, Cognizant, Research Data Analyst, ETL/NLP, Statistical Modelling |
 | Data Engineer (title on Centelon: never) | SharePoint/Azure/S3/API/DevOps integrations, knowledge architecture, CI/CD connectivity | Centelon bullet 5 as supporting proof; keep Centelon title as AI Solutions Analyst; use Monash **Data Engineer (ETL & NLP)** for DE depth |
 | Statistical / inferential analytics | MLE, hypothesis testing, CI/CLT, linear regression, stepwise/BIC, RMSE, R | cv-master — **Data Scientist (Statistical Modelling & Predictive Analytics)** |
@@ -36,7 +36,7 @@ These rules beat GOLD CV examples, apply-pack defaults, and `modes/pdf.md` if th
 
 **Senior professional, not junior.** Write as someone who already owns delivery. Lead with outcomes, scope, stakeholders, quality, and tools you have used. Do **not** invent extra years of tenure. Do **not** use junior tells on the page: "eager to learn", "seeking an opportunity to grow", "recent graduate looking to", "exposure to", "assisted with" as the main verb, "passionate about", "results-driven", "seasoned". You may state Master of Data Science as a credential, not as a student identity.
 
-**First person in the Professional Summary.** Never write implied third person ("Brings Python experience", "Experienced data professional who delivers", "Holds a Master of..."). Write "I": "I bring Python and SQL experience...", "I have delivered...", "I work with stakeholders to...". Experience **bullets** stay pronoun-free (standard achievement bullets: "Designed...", "Led..."), not "She designed" and not "Brings...".
+**Professional Summary: implied professional voice, not "I" and not junior third person.** On the CV summary, do not start sentences with "I currently contribute", "I work", "I turn". Also never write "Brings Python experience", "Holds a Master of...", or "Experienced data professional who...". Write compact senior CV prose: "Data and AI professional currently delivering enterprise solution analysis at Centelon Solutions in Melbourne." Experience **bullets** stay pronoun-free ("Designed...", "Led..."). Cover letters stay first person.
 
 **No AI punctuation.** Do not use em dashes (—), en dashes (–), arrows (→), ellipsis characters (…), or decorative symbols (•, ★, | in body prose). Date ranges use a normal hyphen: `Jun 2021 - Jul 2021`. In sentences, use a comma, colon, or a new sentence instead of a dash. Contact line may keep pipes.
 
@@ -91,7 +91,7 @@ This is Nidhi's **current professional Australian industry role**. It is the mos
 
 **Never write on any candidate-facing document:** intern, internship, graduate intern, vacationer, placement, "assisting", "shadowing", "exposure to", "learning", or "supporting the team" as the main verb.
 
-**Agent-only honesty (interviews / evaluations, not the CV):** the engagement is an internship. If a recruiter directly asks about employment type, be truthful without volunteering intern language on paper. Same pattern as Phoenix: functional title on the CV, honest if probed. Do not overclaim "led the platform" or "owned architecture"; use "contributed to architecture" for the overall system, and stronger verbs for work she designed (workflows, requirements, evaluations).
+**Public vs private (mandatory on every candidate-facing document):** Do not name internal products (including Smart Agile Hub). Do not describe implementation internals: coding harnesses, sidecars, tenant administration, workflow diagnostic access, or agents generating Dynamics 365 application objects from design documents. Keep the high-level skills: multi-agent automation, RAG, human-in-the-loop workflows, LLM evaluation, Australian data residency, RBAC, enterprise knowledge sources, DevOps/CI/CD, Dynamics 365 Finance and Operations automation, requirements, process design, and stakeholder delivery.
 
 **Default title (use unless the JD clearly maps to an allowed variant):** `AI Solutions Analyst`
 
@@ -110,44 +110,49 @@ This is Nidhi's **current professional Australian industry role**. It is the mos
 
 **Fixed lines:**
 ```
-**{Title from table}** | Aug 2026 - Present
+**{Title from table}** | May 2026 - Present
 Centelon Solutions
 Melbourne, Australia
 ```
 
-If the user later confirms a different start month, update `cv-master`, `cv.md`, and this date. Until then use **Aug 2026 - Present**.
+Start month is **May 2026**. If it changes later, update `cv-master`, `cv.md`, and this date.
 
 **Placement and volume (non-negotiable):**
 1. Always the **first** Professional Experience entry on every CV.
-2. Master / default CVs keep **all 8 bullets** below (most detailed role on the page).
-3. JD-tailored CVs keep **5 to 8 bullets**. Reorder toward the JD. Never go below 5.
+2. Master / default CVs keep **all 13 bullets** below (most detailed role on the page). This is the phone-apply master: do not compress Centelon to save space.
+3. JD-tailored CVs keep **5 to 8 bullets** selected from the bank. Reorder toward the JD. Never go below 5.
 4. Professional Summary, Key Highlights, and cover-letter paragraph 2 **lead with Centelon**, then Monash/India proof.
 5. **Never drop this role.** If the CV is over 2 pages, drop Community Leadership and then other roles. Shorten other roles before touching Centelon.
 
-**Full bullet bank (source of truth — reword toward the JD, do not invent metrics or tools):**
+**Full bullet bank (source of truth, 13 public bullets. Master CVs keep all 13. Tailored CVs pick 5-8. Reword toward the JD. Do not invent metrics or tools. Do not add internal product names or implementation internals):**
 
-1. **Multi-agent architecture.** Contributed to the architecture of an enterprise multi-agent, multi-LLM automation platform on Smart Agile Hub, integrating agent orchestration, RAG, knowledge sources, enterprise connectors, workflow orchestration, and conversational front-end interfaces.
-2. **HITL / SLA workflows.** Designed and analysed agent workflows covering human approval, rejection, rework, workflow resumption, and SLA handling, converting operational processes into executable automation with human-in-the-loop controls.
-3. **LLM strategy + Australian data residency.** Evaluated LLM integration strategies, including coding harnesses versus API and sidecar approaches, weighing security, performance, cost, token usage, and Australian data-residency requirements.
-4. **RBAC / governance.** Analysed RBAC and access-control architecture, including tenant administration, domain roles, custom permissions, and workflow diagnostic access, to support governed enterprise use.
-5. **Enterprise knowledge and integrations.** Assessed enterprise knowledge and integration approaches across SharePoint, Azure Blob, S3, APIs, GitHub, Azure DevOps, and CI/CD pipelines for retrieval, delivery, and environment connectivity.
-6. **D365 F&O automation.** Defined AI automation for Microsoft Dynamics 365 Finance and Operations, including agents that interpret design documents, generate required application objects, and support maintenance and enhancement workflows.
-7. **Requirements and process design.** Translated business and technical needs into functional, non-functional, and agent-specific requirements, AS-IS and TO-BE process models, solution options, and implementation priorities.
-8. **Stakeholder delivery.** Partnered with platform architects, technical leads, and domain stakeholders to evaluate architecture options, test solution feasibility, and move discovery work into implementation-ready designs.
+1. **Multi-agent architecture.** Shaped architecture for an enterprise multi-agent, multi-LLM automation platform covering agent orchestration, RAG, knowledge sources, enterprise connectors, and workflow control.
+2. **Conversational front end.** Defined conversational interfaces so business users can trigger, review, and steer automated work without using technical consoles.
+3. **HITL / SLA workflows.** Designed and analysed agent workflows for human approval, rejection, rework, workflow resumption, and SLA handling, with human-in-the-loop controls.
+4. **Pause and resume automation.** Converted operational processes into executable automation that can pause for a human decision and resume without losing context.
+5. **LLM integration options.** Evaluated LLM integration options for enterprise use, comparing hosted services with in-environment approaches.
+6. **Australian data residency.** Assessed those options against security, performance, cost, token usage, and Australian data-residency requirements.
+7. **RBAC / governance.** Analysed role-based access control, including domain roles and custom permissions, to support governed enterprise use.
+8. **Knowledge sources.** Assessed enterprise knowledge and integration approaches across SharePoint, Azure storage, and APIs for retrieval, delivery, and environment connectivity.
+9. **DevOps connectivity.** Mapped GitHub, Azure DevOps, and CI/CD connectivity so automation can run against the right development and delivery environments.
+10. **D365 automation.** Defined AI-supported automation for Microsoft Dynamics 365 Finance and Operations, covering design, build, and operational support workflows.
+11. **D365 maintenance.** Specified maintenance and enhancement processes so ERP automation can be updated without rebuilding the process from scratch.
+12. **Requirements and process design.** Translated business and technical needs into functional, non-functional, and agent-specific requirements, AS-IS and TO-BE process models, solution options, and implementation priorities.
+13. **Stakeholder delivery.** Partnered with architects, technical leads, and domain stakeholders to test feasibility and move discovery work into implementation-ready designs.
 
 **Which bullets to lead with:**
 
-| JD type | Keep first (still 5-8 total) |
+| JD type | Keep first (still 5-8 total on tailored CVs) |
 |---------|------------------------------|
-| Default / most CVs | 1, 3, 6, 7, 8, then 2, 5, 4 |
-| BA / process / consulting | 7, 8, 2, 6, 1, then 3, 4, 5 |
-| AI Engineer / GenAI / LLM | 1, 3, 2, 6, 5, then 7, 8, 4 |
-| D365 / ERP / automation | 6, 2, 1, 7, 8, then 3, 5, 4 |
-| Data Analyst / BI | 7, 5, 8, 3, 1, then 6, 2, 4 |
-| Security / governance / identity | 4, 3, 5, 1, 7, then 8, 2, 6 |
-| Data Engineer JD | Keep title **AI Solutions Analyst**; lead 5, 1, 3, 6, 7. Do not retitle this role Data Engineer. |
+| Default / most CVs | 1, 6, 10, 12, 13, then 3, 8, 5 |
+| BA / process / consulting | 12, 13, 3, 10, 1, then 6, 7, 8 |
+| AI Engineer / GenAI / LLM | 1, 5, 6, 3, 8, then 10, 12, 13 |
+| D365 / ERP / automation | 10, 11, 3, 1, 12, then 13, 6, 8 |
+| Data Analyst / BI | 12, 8, 13, 6, 1, then 10, 3, 7 |
+| Security / governance / identity | 7, 6, 8, 1, 12, then 13, 3, 9 |
+| Data Engineer JD | Keep title **AI Solutions Analyst**. Lead 8, 9, 1, 6, 10. Do not retitle this role Data Engineer. |
 
-**Keywords to inject when the JD uses them (only if true to the bank):** multi-agent, multi-LLM, RAG, human-in-the-loop, agent orchestration, Smart Agile Hub, LLM selection, coding harness, API, sidecar, token usage, Australian data residency, RBAC, tenant administration, SharePoint, Azure Blob, S3, Azure DevOps, CI/CD, Microsoft Dynamics 365, Finance and Operations, design documents, application objects, functional requirements, non-functional requirements, AS-IS, TO-BE, solution options, workflow SLA.
+**Keywords to inject when the JD uses them (only if true to the bank):** multi-agent, multi-LLM, RAG, human-in-the-loop, agent orchestration, LLM selection, hosted API, token usage, Australian data residency, RBAC, SharePoint, Azure, Azure DevOps, CI/CD, Microsoft Dynamics 365, Finance and Operations, functional requirements, non-functional requirements, AS-IS, TO-BE, solution options, workflow SLA. Never inject Smart Agile Hub, coding harness, sidecar, tenant administration, or application-object generation.
 
 ### Masters projects under Professional Experience
 
@@ -157,7 +162,7 @@ Nidhi has limited industry tenure. **Keep Monash masters work under Professional
 
 | Role (cv-master title) | Dates | When to drop |
 |------|-------|--------------|
-| **AI Solutions Analyst (Centelon Solutions)** | **Aug 2026 – Present** | **NEVER DROP. Always first. Always 5-8 bullets.** Current Australian industry role. |
+| **AI Solutions Analyst (Centelon Solutions)** | **May 2026 - Present** | **NEVER DROP. Always first. Always 5-8 bullets.** Current Australian industry role. |
 | New Partner Coordinator | Feb 2026 – Present | **Community Leadership section only** — never in Professional Experience. Drop first if over page limit |
 | Research Data Analyst (Public Health Data Integration) | Feb 2025 – Jun 2025 | Keep for research, public-sector, health, governance, or social-impact JDs |
 | Data Science Lead (Real-Time Fraud Analytics) | Jul 2024 – Nov 2024 | Keep for data engineering, PySpark, streaming, fraud, or scale JDs |
@@ -266,7 +271,7 @@ Naming:
 
 - **Priority:** Avoid a long post-masters gap — harder to explain and harder to land analytics roles. Willing to consider **adjacent** roles (e.g. coordinator, ops, reporting-heavy contracts) if they provide **paid tenure**, professional references, and skills that do not block a return to data/BI.
 - **When evaluating "stretch" roles:** Score north-star lower but do not auto-discard if comp/location/visa work and there is a credible **pivot narrative** (Excel/Power BI, ticketing, SLAs, stakeholder comms). Flag trade-offs explicitly; suggest a short recruiter call to validate reality vs wishlist.
-- **Current professional role (MUST be on every CV):** **AI Solutions Analyst, Centelon Solutions, Melbourne** (Aug 2026 - Present). Lead role. Never labelled intern. Full rules in the Centelon section above.
+- **Current professional role (MUST be on every CV):** **AI Solutions Analyst, Centelon Solutions, Melbourne** (May 2026 - Present). Lead role. Never labelled intern. Full rules in the Centelon section above.
 - **Current work (do NOT put on cv.md or tailored CVs):** Casual **retail sales assistant at Zara** (Melbourne). Use only for agent context and transferable-skill framing in evaluations/interview prep.
 - **Zara → transferable skills (not on resume):** fast-paced customer service, handling objections, upselling within process, accuracy under pressure, rostered shift reliability, teamwork on busy floors, following brand/compliance standards, reading customer needs quickly — maps to client-facing ops, SLA-driven queues, and professional communication in coordinator roles.
 - **Comms preference (May 2026):** Recovering from wisdom teeth extraction — prefer **email only** for ~3–4 days; defer recruiter calls until **next week** when able to speak comfortably.

@@ -180,12 +180,16 @@ async function main() {
   const contactBlock = extractContactBlock(md);
   const contactParts = contactBlock.split('|').map((s) => s.trim());
   const linkedinIdx = contactParts.findIndex((p) => /linkedin\.com/i.test(p));
+  const githubIdx = contactParts.findIndex((p) => /github\.com/i.test(p));
   const emailIdx = contactParts.findIndex((p) => p.includes('@'));
   const phoneIdx = contactParts.findIndex((p) => /^\+?\d/.test(p));
   const phone = phoneIdx >= 0 ? contactParts[phoneIdx] : contactParts[0] || '';
   const email = emailIdx >= 0 ? contactParts[emailIdx] : contactParts[1] || '';
   const linkedinUrl = linkedinIdx >= 0 ? contactParts[linkedinIdx] : contactParts[2] || '';
-  const remaining = contactParts.filter((_, i) => !([phoneIdx, emailIdx, linkedinIdx].includes(i)));
+  const githubUrl = githubIdx >= 0 ? contactParts[githubIdx] : '';
+  const remaining = contactParts.filter(
+    (_, i) => !([phoneIdx, emailIdx, linkedinIdx, githubIdx].includes(i))
+  );
   const cityLocation = remaining.find((p) => !/work rights|visa|graduate/i.test(p)) || remaining[0] || '';
   const visa = remaining.find((p) => /work rights|visa|graduate/i.test(p)) || remaining[1] || '';
 
@@ -210,8 +214,8 @@ async function main() {
     '{{EMAIL}}': escapeHtml(email),
     '{{LINKEDIN_URL}}': escapeHtml(linkedinUrl),
     '{{LINKEDIN_DISPLAY}}': escapeHtml(linkedinDisplay),
-    '{{PORTFOLIO_URL}}': '#',
-    '{{PORTFOLIO_DISPLAY}}': '',
+    '{{PORTFOLIO_URL}}': escapeHtml(githubUrl || '#'),
+    '{{PORTFOLIO_DISPLAY}}': githubUrl ? 'GitHub' : '',
     '{{LOCATION}}': escapeHtml(cityLocation),
     '{{VISA_STATUS}}': escapeHtml(visa),
     '{{SECTION_SUMMARY}}': 'Professional Summary',
@@ -262,17 +266,11 @@ async function main() {
     }
   }
 
-  // Remove portfolio link; keep city on the contact row
-  template = template.replace(
-    /\s*<span class="separator">\|<\/span>\s*\r?\n\s*<a href="{{PORTFOLIO_URL}}">{{PORTFOLIO_DISPLAY}}<\/a>/,
-    ''
-  );
-
-  // Visa status on second contact row when present
-  if (visa) {
+  // Hide the optional GitHub link and its preceding separator.
+  if (!githubUrl) {
     template = template.replace(
-      /<\/div>\r?\n  <\/div>\r?\n\r?\n  <!-- PROFESSIONAL SUMMARY -->/,
-      `</div>\r\n    <div class="contact-row contact-row-secondary">{{VISA_STATUS}}</div>\r\n  </div>\r\n\r\n  <!-- PROFESSIONAL SUMMARY -->`
+      /\s*<span class="separator">\|<\/span>\s*\r?\n\s*<a href="{{PORTFOLIO_URL}}">{{PORTFOLIO_DISPLAY}}<\/a>/,
+      ''
     );
   }
 

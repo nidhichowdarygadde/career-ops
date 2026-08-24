@@ -1,109 +1,159 @@
 # Nidhi Chowdary Gadde
 
 ```
-+61 451 771 485 | nidhichowdarygadde@gmail.com | https://www.linkedin.com/in/nidhi-chowdary-b74016215/ | Melbourne, VIC | Full Australian work rights · Graduate visa (485) · Valid to Aug 2028
++61 451 771 485 | nidhichowdarygadde@gmail.com | https://www.linkedin.com/in/nidhi-chowdary-b74016215/ | https://github.com/nidhichowdarygadde | Melbourne, VIC
 ```
 
 ## PROFESSIONAL SUMMARY
 
-Data and AI professional currently contributing to enterprise multi-agent automation and Dynamics 365 solution design in Melbourne. Combines technical solution analysis with business analysis across agent orchestration, RAG, human-in-the-loop workflows, requirements definition, and stakeholder alignment. Background spans Python, SQL, PySpark, statistical modelling, and BI delivery across fraud, public health, and operations. Works with architects, technical leads, and business stakeholders to turn ambiguous requirements into implementation-ready designs.
+Data and AI professional currently delivering enterprise solution analysis at Centelon Solutions in Melbourne. Combines technical design with business analysis across multi-agent automation, Microsoft Dynamics 365 Finance and Operations, retrieval-augmented generation, human-in-the-loop workflows, and Australian data-residency requirements. Translates ambiguous business and technical needs into functional requirements, process models, and implementation-ready designs for architects and delivery teams. Applied strength in Python, SQL, PySpark, statistical modelling, and BI dashboards across fraud, public health, and operations, supported by a Master of Data Science from Monash University.
+
+## CORE COMPETENCIES
+
+AI Solution Design | Business Analysis | Requirements and Process Design | Microsoft Dynamics 365 | Multi-Agent Systems and RAG | Python and SQL Analytics | Tableau and Power BI | Data Quality and Governance
 
 ## KEY HIGHLIGHTS
 
-- **Enterprise AI solution design (Melbourne):** Contributing to a multi-agent, multi-LLM automation architecture on Smart Agile Hub, covering agent orchestration, RAG, human-in-the-loop workflows, enterprise connectors, and conversational interfaces.
-- **Dynamics 365 automation:** Defining AI agents that interpret design documents, generate application objects, and support maintenance and enhancement workflows for Microsoft Dynamics 365 Finance and Operations.
-- **Australian data residency and governance:** Evaluating LLM integration strategies, RBAC, and knowledge-source options against security, cost, token usage, and Australian data-residency requirements.
-- **Requirements to implementation:** Translating business and technical needs into functional, non-functional, and agent-specific requirements, AS-IS and TO-BE process models, and solution options with architects and domain stakeholders.
-- **End-to-end analytics delivery:** Raw data ingestion, ETL, statistical modelling, ML evaluation, and executive-ready dashboards, from pipeline development through to decision support.
-- **Technical breadth:** Python, SQL, PySpark, Oracle, MongoDB, PostgreSQL, Snowflake, Tableau, Power BI, SharePoint, Azure, Azure DevOps, and GitHub applied across enterprise automation, fraud, operations, and research domains.
+- **Melbourne industry AI delivery:** Current role at Centelon Solutions designing enterprise multi-agent automation covering orchestration, RAG, workflow control, and conversational interfaces for business users.
+- **Dynamics 365 automation:** Defining AI-supported design, build, and support workflows for Microsoft Dynamics 365 Finance and Operations.
+- **Australian data residency and governance:** Evaluating LLM options against security, cost, token usage, and Australian data-residency requirements, with RBAC and knowledge-source design.
+- **Requirements to a buildable design:** Turning needs into functional, non-functional, and agent-specific requirements, AS-IS and TO-BE process models, and implementation priorities.
+- **Scale analytics and reporting:** PySpark, Spark SQL, and Kafka pipelines for 5 million-plus e-commerce transactions, plus Tableau, Power BI, and R Shiny dashboards used by operational and research stakeholders.
 
 ## SKILLS
 
-**AI, Automation & Enterprise Platforms:** Multi-agent systems, RAG, LLM evaluation, human-in-the-loop workflows, agent orchestration, Microsoft Dynamics 365 Finance and Operations, SharePoint, Azure Blob, Azure DevOps, CI/CD
+**AI, Automation and Enterprise Platforms:** Multi-agent systems, RAG, LLM evaluation, human-in-the-loop workflows, agent orchestration, Microsoft Dynamics 365 Finance and Operations, SharePoint, Azure, Azure DevOps, CI/CD
 
-**Solution Analysis:** Functional and non-functional requirements, AS-IS/TO-BE process design, RBAC, data residency, enterprise connectors, stakeholder workshops
+**Solution Analysis:** Functional and non-functional requirements, AS-IS and TO-BE process design, RBAC, data residency, enterprise connectors, stakeholder workshops
 
-**Data Analysis & Reporting:** Microsoft Excel (advanced), Power BI, Tableau, R Shiny, Plotly, Matplotlib, ggplot2
+**Data Analysis and Reporting:** Microsoft Excel (advanced), Power BI, Tableau, R Shiny, Plotly, Matplotlib, ggplot2
 
 **Programming:** Python, SQL, R, PySpark, Pandas, NumPy
 
-**Statistical Analysis:** Regression Analysis, Trend Analysis, Forecasting, Anomaly Detection, Hypothesis Testing, Exploratory Data Analysis
+**Statistical Analysis:** Regression analysis, trend analysis, forecasting, anomaly detection, hypothesis testing, exploratory data analysis
 
 **Databases:** Oracle (12c, SQL Developer), PostgreSQL, MongoDB, Snowflake
 
-**Data Management:** Data Quality Assurance, Data Verification, ETL Pipelines, Data Wrangling, Data Collection, Metadata Documentation
+**Data Management:** Data quality assurance, data verification, ETL pipelines, data wrangling, data collection, metadata documentation
 
-**Collaboration & Tools:** Jira, Confluence, Microsoft Teams, Microsoft PowerPoint, Microsoft Word, Git, GitHub, Google Docs
-
-**Other:** Requirements Gathering, Stakeholder Reporting, Performance Monitoring, Dashboard Design, Research & Problem-Solving, Cross-Functional Collaboration
+**Collaboration and Tools:** Jira, Confluence, Microsoft Teams, Microsoft PowerPoint, Microsoft Word, Git, GitHub, Google Docs
 
 ## PROFESSIONAL EXPERIENCE
 
-**AI Solutions Analyst** | Aug 2026 - Present
+**AI Solutions Analyst** | May 2026 - Present
 Centelon Solutions
 Melbourne, Australia
-- Contributed to the architecture of an enterprise multi-agent, multi-LLM automation platform on Smart Agile Hub, integrating agent orchestration, RAG, knowledge sources, enterprise connectors, workflow orchestration, and conversational front-end interfaces.
-- Designed and analysed agent workflows covering human approval, rejection, rework, workflow resumption, and SLA handling, converting operational processes into executable automation with human-in-the-loop controls.
-- Evaluated LLM integration strategies, including coding harnesses versus API and sidecar approaches, weighing security, performance, cost, token usage, and Australian data-residency requirements.
-- Analysed RBAC and access-control architecture, including tenant administration, domain roles, custom permissions, and workflow diagnostic access, to support governed enterprise use.
-- Assessed enterprise knowledge and integration approaches across SharePoint, Azure Blob, S3, APIs, GitHub, Azure DevOps, and CI/CD pipelines for retrieval, delivery, and environment connectivity.
-- Defined AI automation for Microsoft Dynamics 365 Finance and Operations, including agents that interpret design documents, generate required application objects, and support maintenance and enhancement workflows.
+- Shaped architecture for an enterprise multi-agent, multi-LLM automation platform covering agent orchestration, RAG, knowledge sources, enterprise connectors, and workflow control.
+- Defined conversational interfaces so business users can trigger, review, and steer automated work without using technical consoles.
+- Designed and analysed agent workflows for human approval, rejection, rework, workflow resumption, and SLA handling, with human-in-the-loop controls.
+- Converted operational processes into executable automation that can pause for a human decision and resume without losing context.
+- Evaluated LLM integration options for enterprise use, comparing hosted services with in-environment approaches.
+- Assessed those options against security, performance, cost, token usage, and Australian data-residency requirements.
+- Analysed role-based access control, including domain roles and custom permissions, to support governed enterprise use.
+- Assessed enterprise knowledge and integration approaches across SharePoint, Azure storage, and APIs for retrieval, delivery, and environment connectivity.
+- Mapped GitHub, Azure DevOps, and CI/CD connectivity so automation can run against the right development and delivery environments.
+- Defined AI-supported automation for Microsoft Dynamics 365 Finance and Operations, covering design, build, and operational support workflows.
+- Specified maintenance and enhancement processes so ERP automation can be updated without rebuilding the process from scratch.
 - Translated business and technical needs into functional, non-functional, and agent-specific requirements, AS-IS and TO-BE process models, solution options, and implementation priorities.
-- Partnered with platform architects, technical leads, and domain stakeholders to evaluate architecture options, test solution feasibility, and move discovery work into implementation-ready designs.
+- Partnered with architects, technical leads, and domain stakeholders to test feasibility and move discovery work into implementation-ready designs.
 
-**Data Analyst & Researcher (Public Health Data Integration)** | Feb 2025 - Jun 2025
+**Research Data Analyst (Public Health Data Integration)** | Feb 2025 - Jun 2025
 Monash University
 Melbourne, Australia
-- Integrated multi-source datasets from ABS, NDIS, Victorian education, and health repositories to quantify prevalence and demographic trends across population cohorts, supporting evidence-based program evaluation and published research.
-- Established data quality frameworks for complex heterogeneous datasets, standardising validation rules and restructuring schemas to ensure reliability and consistency across downstream reporting workflows.
-- Performed exploratory data analysis on population-level data, identifying statistically significant trends across age groups, geographic regions, and socioeconomic indicators to inform research findings and policy recommendations.
-- Delivered interactive dashboards and reports surfacing key performance indicators and trend data that directly informed published research outputs and strategic decision-making.
-- Collaborated with multidisciplinary stakeholders to define data requirements, align analytical methodologies with research objectives, and present complex findings in accessible formats for diverse audiences.
+- Architected a multi-source integration pipeline linking ABS, NDIS, Victorian education, and health repository datasets to quantify autism prevalence and demographic trends across population cohorts.
+- Established data quality frameworks for mixed datasets, standardising validation rules and restructuring schemas so downstream analysis stayed reliable.
+- Performed exploratory analysis on population-level demographic data, identifying statistically significant prevalence patterns across age groups, regions, and socioeconomic indicators.
+- Delivered interactive dashboards on prevalence, gender distribution, and behavioural indicators that informed published research findings and policy recommendations.
+- Worked with multidisciplinary research stakeholders to agree data needs, align methods with research questions, and present statistical outputs for policy audiences.
 
-**Data Visualisation & Reporting Analyst** | Jul 2024 - Nov 2024
+**Data Science Lead (Real-Time Fraud Analytics)** | Jul 2024 - Nov 2024
 Monash University
 Melbourne, Australia
-- Built interactive dashboards and visual analytics across Tableau, R Shiny/Leaflet, and D3.js with cross-view highlighting, drill-down capabilities, and demographic filters for multi-dimensional data exploration spanning 2014-2023.
-- Merged approximately 16,000 U.S. HHS indicators with 51-state datasets, performing end-to-end data wrangling including imputation, Z-score outlier detection, and deduplication to deliver actionable trend analyses and anomaly identification.
-- Designed multi-view dashboards for stakeholders featuring choropleth maps, heatmaps, stacked area charts, and guided navigation, prioritising clarity and accessibility for non-technical decision-maker audiences.
-- Documented design rationale and reporting processes, ensuring reports were clear, well-governed, and easy to understand for diverse stakeholder groups.
+- Led a cross-functional team through requirements, exploratory analysis, pipeline delivery, and model evaluation for a real-time fraud system processing 5 million-plus e-commerce transactions.
+- Designed batch and streaming pipelines in PySpark, Spark SQL, and Kafka, moving data from raw ingestion through transformation to analytical output.
+- Engineered behavioural features covering browsing patterns, time-of-day signals, and demographic attributes that improved separation of fraudulent and legitimate transactions.
+- Built Spark Structured Streaming workflows to monitor live transaction feeds and flag suspicious activity within seconds of occurrence.
+- Evaluated model performance with precision-recall analysis, confusion matrices, and threshold tuning to balance detection accuracy against false positives.
 
-**Data Analyst (Data Quality & Pipeline Engineering)** | Mar 2024 - May 2024
+**Machine Learning Engineer (Project Lead)** | Jul 2024 - Nov 2024
 Monash University
 Melbourne, Australia
-- Engineered data validation pipelines using exploratory data analysis, geospatial visualisation, and graph-based computation to verify and correct location data across operational datasets.
-- Built rule-based data correction workflows for multi-field validation including dates, coordinates, business-rule constraints, and location assignments, with automated imputation and consistent missing-value handling.
-- Parsed and transformed 6,750+ semi-structured records into structured formats, applying date normalisation, standardisation, and documented quality standards for downstream reporting and analytical use.
+- Led supervised learning pipelines including Logistic Regression, K-Nearest Neighbours, Ridge Regression, and Naive Bayes for multi-class classification on large datasets.
+- Drove model selection through cross-validation and hyperparameter tuning, reducing generalisation error across several model families.
+- Designed and trained neural networks and autoencoders for classification and representation learning, comparing accuracy, latency, and interpretability.
+- Coordinated delivery across the team with code review practices, documentation standards, and milestone tracking.
+- Produced evaluation reports with confusion matrices, precision-recall curves, and feature importance to support deployment-readiness decisions.
 
-**Statistical Modelling Analyst** | Mar 2024 - May 2024
+**Data Visualization Engineer** | Jul 2024 - Nov 2024
 Monash University
 Melbourne, Australia
-- Applied regression analysis, trend forecasting, and predictive modelling techniques across demographic and operational datasets using R and Python.
-- Modelled survey data with multiple linear regression, applying variable selection and cross-validation to optimise predictive accuracy.
-- Communicated statistical methodology and findings through structured analytical reports, translating complex results into clear, actionable recommendations for non-technical stakeholders.
+- Built interactive visual analytics in Tableau, R Shiny/Leaflet, and D3.js, with cross-view highlighting, tooltips, and drill-down for urban development data from 2014 to 2023.
+- Merged about 16,000 U.S. HHS mental-health indicators with 51-state crime and substance-use datasets, including imputation, Z-score outlier detection, and deduplication.
+- Surfaced pandemic-era mental-health patterns, including higher burden on younger groups and state-level links between violent crime, substance use, and anxiety prevalence.
+- Delivered a multi-view R Shiny dashboard with plotly, ggplot2, and sf/usmap, including choropleth maps, heatmaps, stacked area charts, and demographic filters.
+- Documented design choices for colour, layout, and interaction so non-technical decision-makers could use the views without a technical walkthrough.
+
+**Data Engineer (ETL & NLP Pipelines)** | Mar 2024 - May 2024
+Monash University
+Melbourne, Australia
+- Built geospatially validated ETL pipelines using exploratory analysis, geospatial plots, and NetworkX Dijkstra shortest-path computation on road-network graphs to check and correct location-to-branch distances.
+- Built rule-based correction workflows for dates, coordinates, business-rule constraints, and location assignments, with automated imputation using Haversine distance and segment-specific linear regression.
+- Developed an XML-to-JSON parsing engine in Python regex to transform 6,750-plus semi-structured records, with date normalisation, country standardisation, and consistent null handling.
+- Built an NLP preprocessing pipeline on 80,000-plus text records with deduplication, language detection, regex tokenisation, PMI bigram collocation, Porter stemming, and sparse count-vector export.
+- Benchmarked MinMax, standardisation, log, and Box-Cox transformations on demographic feature sets to improve scale consistency and linearity for regression modelling.
+
+**Data Scientist (Statistical Modelling & Predictive Analytics)** | Mar 2024 - May 2024
+Monash University
+Melbourne, Australia
+- Derived maximum-likelihood estimators, confidence intervals, and hypothesis tests across several probability distributions, turning statistical theory into reproducible R workflows.
+- Built Monte Carlo simulation pipelines and checked stochastic outputs against theoretical density curves under changing sample conditions.
+- Modelled wellbeing survey data with multiple linear regression, using stepwise variable selection and cross-validation to reach an R-squared of 0.775 while limiting overfitting.
+- Developed classification and regression pipelines using Random Forest, XGBoost, KNN, SVM, and GBM, with hyperparameter tuning and holdout evaluation across several target variables.
+- Wrote structured analytical reports that explained methods and findings as clear recommendations for non-technical readers.
+
+**Software Engineer (Analytics & Data Applications)** | Aug 2023 - Oct 2023
+Monash University
+Melbourne, Australia
+- Developed modular Python applications for data-driven decision support, including a property investment analysis tool processing 118,000-plus real-estate transaction records to surface suburb-level market insights and pricing trends.
+- Built object-oriented systems with file-based persistence for customer records, stock inventories, and order histories, including business-rule engines for validation, eligibility checks, and location-based lookups.
+- Used Pandas, NumPy, and Matplotlib for data manipulation, statistical aggregation, and time-series trend visualisations supporting investor analysis.
+- Implemented custom algorithms including binary search for record retrieval, optimised sorting for large-scale ordering, and sequential ID generation for transaction tracking.
+- Designed input validation and exception handling across the applications so errors recovered cleanly and data stayed intact under mixed input conditions.
+
+**Database Developer** | Aug 2023 - Oct 2023
+Monash University
+Melbourne, Australia
+- Translated multi-domain business requirements into relational database designs, including Crow's-foot conceptual entity-relationship models, UNF-to-3NF normalisation, and logical schemas in Oracle SQL Developer Data Modeler.
+- Built and deployed Oracle 12c schemas spanning 13-plus interconnected tables with primary and foreign keys, CHECK constraints, surrogate keys, associative entities, and referential integrity across clinical, operational, and billing domains.
+- Authored DDL and DML scripts for scheduling and workflow systems, including sequence-driven registration, transactional updates for rescheduling and cancellations, and live schema migrations as relationships changed.
+- Delivered hybrid reporting combining multi-table SQL with aggregations and subqueries, Oracle JSON_OBJECT and JSON_ARRAYAGG for hierarchical export, and MongoDB operations for nested document management.
+- Produced schema documentation including data dictionaries, relationship diagrams, and constraint specifications for maintainability and handover.
 
 **Program Analyst** | Jan 2022 - May 2022
 Cognizant
 Hyderabad, India
-- Authored SQL queries for data extraction, reporting, and database operations across large-scale operational datasets.
-- Executed Python-based data analysis workflows, producing structured summaries to support internal team reviews and reporting needs.
-- Maintained documentation of query logic, analysis outputs, and daily progress to support traceability and team continuity.
-- Worked within agile delivery cycles using Jira for task tracking, coordinating with developers in an enterprise software environment.
-- Supported data-driven troubleshooting and reporting tasks through repeatable SQL workflows and clear handover notes.
+- Wrote SQL queries for data extraction, reporting, and database operations across large operational datasets.
+- Ran Python analysis workflows and produced structured summaries for internal team reviews and reporting.
+- Documented query logic, analysis outputs, and daily progress so work stayed traceable and easy to hand over.
+- Worked in agile delivery cycles using Jira for task tracking, coordinating with developers in an enterprise software environment.
+- Supported troubleshooting and reporting through repeatable SQL workflows and clear handover notes.
 
 **Data Analyst** | Jun 2021 - Jul 2021
 Phoenix Global
 Visakhapatnam, India
-- Developed interactive Tableau dashboards and Python-based analyses to support operational reporting and internal business reviews.
-- Conducted exploratory data analysis on business datasets, preparing structured summaries for analytics team and stakeholder consumption.
+- Developed interactive Tableau dashboards and Python analyses to support operational reporting and internal business reviews.
+- Conducted exploratory data analysis on business datasets and prepared structured summaries for the analytics team.
 - Applied data cleaning and validation checks to improve consistency of dashboard inputs and report outputs.
-- Collaborated within a cross-functional analytics team to translate business questions into visual reports and actionable insights.
+- Worked in a cross-functional analytics team to turn business questions into visual reports and usable insights.
+
+## COMMUNITY LEADERSHIP
 
 **New Partner Coordinator** | Feb 2026 - Present
 Grad Girls Tech Program, Women4STEM
 Melbourne, Australia
 - Leading industry outreach and partnership development, connecting graduates and early-career professionals with established leaders across the technology sector.
-- Coordinating cross-organisational networking events and mentorship programmes supporting women entering technology careers.
+- Coordinating cross-organisational networking events and structured mentorship programmes that bridge academic preparation with industry expectations.
+- Building and managing relationships with corporate partners, university departments, and community organisations to grow programme reach.
 
 ## EDUCATION
 
@@ -118,4 +168,4 @@ Specialisation: Probability & Statistics, Database Management Systems, Data Mini
 ## CERTIFICATIONS & PROFESSIONAL DEVELOPMENT
 
 - Forage (2026): Deloitte Data Analytics Job Simulation
-- DataCamp (2023-2026): Introduction to SQL, Intermediate SQL, Joining Data in SQL, Introduction to Relational Databases in SQL, Introduction to R, Intermediate R, Introduction to Statistics in R, Supervised Learning in R: Classification, Introduction to Python, Intermediate Python, Exploratory Data Analysis in Python, Python for Spreadsheet Users, Understanding Data Engineering, Introduction to Power BI, Introduction to DAX in Power BI, Understanding Cloud Computing, Understanding Microsoft Azure
+- DataCamp (2023-2026): SQL, R, Python, statistics, classification, exploratory data analysis, data engineering, Power BI, DAX, cloud computing, and Microsoft Azure

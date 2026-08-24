@@ -133,7 +133,15 @@ async function generatePDF() {
     console.log(`🧹 ATS normalization: ${totalReplacements} replacements (${breakdown})`);
   }
 
-  const browser = await chromium.launch({ headless: true });
+  let browser;
+  try {
+    browser = await chromium.launch({ headless: true });
+  } catch (err) {
+    const msg = err?.message || String(err);
+    if (!/Executable doesn't exist|Failed to launch/i.test(msg)) throw err;
+    console.log('Playwright Chromium not installed. Falling back to system Chrome.');
+    browser = await chromium.launch({ headless: true, channel: 'chrome' });
+  }
   try {
     const page = await browser.newPage();
 

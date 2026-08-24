@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{NAME}} — CV</title>
+<title>{{NAME}} - CV</title>
 <style>
   @font-face {
     font-family: 'Space Grotesk';
@@ -54,8 +54,8 @@
 
   body {
     font-family: 'DM Sans', sans-serif;
-    font-size: 11px;
-    line-height: 1.5;
+    font-size: 10.5px;
+    line-height: 1.4;
     color: #1a1a2e;
     background: #ffffff;
     padding: 0;
@@ -71,7 +71,7 @@
 
   /* === HEADER === */
   .header {
-    margin-bottom: 20px;
+    margin-bottom: 12px;
   }
 
   .header h1 {
@@ -94,31 +94,30 @@
   .contact-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px 14px;
+    justify-content: flex-start;
+    align-items: baseline;
+    gap: 0;
     font-family: 'DM Sans', sans-serif;
-    font-size: 10.5px;
+    font-size: 10.8px;
     line-height: 1.4;
-    color: #555;
+    color: #444;
   }
 
   .contact-row a {
-    color: #555;
+    color: hsl(187, 74%, 28%);
     text-decoration: none;
+    font-weight: 500;
   }
 
   .contact-row .separator {
-    color: #ccc;
-  }
-
-  .contact-row-secondary {
-    margin-top: 4px;
-    font-size: 10px;
-    color: #666;
+    display: inline;
+    margin: 0 8px;
+    color: #bbb;
   }
 
   /* === SECTIONS === */
   .section {
-    margin-bottom: 18px;
+    margin-bottom: 11px;
   }
 
   .section-title {
@@ -136,8 +135,8 @@
 
   /* === PROFESSIONAL SUMMARY === */
   .summary-text {
-    font-size: 11px;
-    line-height: 1.7;
+    font-size: 10.8px;
+    line-height: 1.55;
     color: #2f2f2f;
   }
 
@@ -172,9 +171,9 @@
 
   .highlights-list li {
     font-size: 10.5px;
-    line-height: 1.55;
+    line-height: 1.4;
     color: #333;
-    margin-bottom: 4px;
+    margin-bottom: 2px;
   }
 
   .highlights-list li strong {
@@ -184,7 +183,7 @@
 
   /* === WORK EXPERIENCE === */
   .job {
-    margin-bottom: 14px;
+    margin-bottom: 9px;
   }
 
   .job-header {
@@ -227,9 +226,9 @@
 
   .job li {
     font-size: 10.5px;
-    line-height: 1.6;
+    line-height: 1.4;
     color: #333;
-    margin-bottom: 4px;
+    margin-bottom: 2px;
   }
 
   .job li strong {
@@ -387,7 +386,6 @@
 
   /* === PAGE BREAK CONTROL === */
   .avoid-break,
-  .job,
   .project,
   .edu-item,
   .cert-item {
@@ -408,11 +406,11 @@
       <span class="separator">|</span>
       <span>{{EMAIL}}</span>
       <span class="separator">|</span>
+      <span>{{LOCATION}}</span>
+      <span class="separator">|</span>
       <a href="{{LINKEDIN_URL}}">{{LINKEDIN_DISPLAY}}</a>
       <span class="separator">|</span>
       <a href="{{PORTFOLIO_URL}}">{{PORTFOLIO_DISPLAY}}</a>
-      <span class="separator">|</span>
-      <span>{{LOCATION}}</span>
     </div>
   </div>
 

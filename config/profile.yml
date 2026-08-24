@@ -4,7 +4,8 @@ candidate:
   phone: "+61 451 771 485"
   location: "Melbourne, VIC, Australia"
   linkedin: "https://www.linkedin.com/in/nidhi-chowdary-b74016215/"
-  visa_status: "Temporary Graduate visa (subclass 485), full work rights until August 2028"
+  github: "https://github.com/nidhichowdarygadde"
+  visa_status: "Temporary Graduate Visa (Subclass 485) with full working rights until August 2028"
 
 target_roles:
   primary:
@@ -59,7 +60,7 @@ location:
   country: "Australia"
   city: "Melbourne"
   timezone: "AEST/AEDT"
-  visa_status: "Temporary Graduate visa (subclass 485), full work rights until August 2028"
+  visa_status: "Temporary Graduate Visa (Subclass 485) with full working rights until August 2028"
   onsite_availability: "Hybrid or on-site in Melbourne; full work rights in Australia"
 
 language:
