@@ -232,6 +232,10 @@ npm run apply-pack -- --csv data/jobs.csv --limit 3 --parallel 2
 
 CSV columns: `company,role,url,location,salary,jd_text`. `jd_text` may be the full JD or a relative path to a `.txt`/`.md` file. See `templates/jobs.example.csv`.
 
+Already-applied jobs live in `data/exclusions.csv` (company, role, status, date, url). Matching rows are skipped before scoring so duplicate CVs/cover letters are not generated. Use `--ignore-exclusions` only if you intentionally want to regenerate. See `templates/exclusions.example.csv`.
+
+Source documents live in `profile/`: `profile/cv-master.md` (falls back to `cv.md`), `profile/cover-letter-master.md`, and the per-archetype gold references in `profile/cv-samples/` and `profile/cover-letter-samples/`. See `profile/README.md` for the archetype mapping.
+
 Writes CV PDFs and cover letter DOCXs **flat into `output/`** (dated filenames, no per-job folders). Review those files, then upload them yourself.
 
 **Exit codes:** `0` success (SKIP rows are success), `1` missing CSV/API key or one or more job errors.

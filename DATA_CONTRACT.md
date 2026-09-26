@@ -9,6 +9,7 @@ These files contain your personal data, customizations, and work product. Update
 | File | Purpose |
 |------|---------|
 | `cv.md` | Your CV in markdown |
+| `profile/*` | Your master CV/cover letter and tailored gold samples used by apply-pack (except `profile/README.md`, which is system-owned documentation delivered by updates) |
 | `config/profile.yml` | Your identity, targets, comp range |
 | `modes/_profile.md` | Your archetypes, narrative, negotiation scripts |
 | `article-digest.md` | Your proof points from portfolio |
@@ -17,6 +18,7 @@ These files contain your personal data, customizations, and work product. Update
 | `data/applications.md` | Your application tracker |
 | `data/pipeline.md` | Your URL inbox |
 | `data/scan-history.tsv` | Your scan history |
+| `data/exclusions.csv` | Jobs you already applied to (company, role, status, date, url) — apply-pack skips these |
 | `data/follow-ups.md` | Your follow-up history |
 | `writing-samples/*` | Your personal writing samples for style calibration (except `writing-samples/README.md`, which is system-owned documentation delivered by updates) |
 | `reports/*` | Your evaluation reports |
@@ -64,6 +66,7 @@ These files contain system logic, scripts, templates, and instructions that impr
 | `VERSION` | Current version number |
 | `DATA_CONTRACT.md` | This file |
 | `writing-samples/README.md` | System-owned onboarding documentation for the writing-samples directory |
+| `profile/README.md` | System-owned onboarding documentation for the profile directory |
 
 ## The Rule
 

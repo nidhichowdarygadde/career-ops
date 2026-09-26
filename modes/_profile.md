@@ -40,7 +40,7 @@ These rules beat GOLD CV examples, apply-pack defaults, and `modes/pdf.md` if th
 
 **No AI punctuation.** Do not use em dashes (—), en dashes (–), arrows (→), ellipsis characters (…), or decorative symbols (•, ★, | in body prose). Date ranges use a normal hyphen: `Jun 2021 - Jul 2021`. In sentences, use a comma, colon, or a new sentence instead of a dash. Contact line may keep pipes.
 
-**At least 3 bullets per role** (Centelon is the exception: **minimum 5, default 8**). Every Professional Experience and Community Leadership entry needs **3 or more** bullets, elaborated toward the JD (reorder, compress, inject real JD vocabulary). Never leave a role on 1-2 bullets. If the CV runs over 2 pages, shorten wording first, then drop a whole role using the drop order below. Never compress a non-Centelon role below 3 bullets. Never compress Centelon below 5.
+**At least 3 bullets per role** (Centelon is the exception: **minimum 6, target 8-10**). Every Professional Experience and Community Leadership entry needs **3 or more** bullets, elaborated toward the JD (reorder, compress, inject real JD vocabulary). Never leave a role on 1-2 bullets. If the CV runs over 2 pages, shorten wording first, then drop a whole role using the drop order below. Never compress a non-Centelon role below 3 bullets. Never compress Centelon below 6. Centelon must stay the most detailed role on the page (more bullets than any other entry).
 
 ## CV Formatting (Australian ATS — MANDATORY)
 
@@ -118,13 +118,13 @@ Melbourne, Australia
 Start month is **May 2026**. If it changes later, update `cv-master`, `cv.md`, and this date.
 
 **Placement and volume (non-negotiable):**
-1. Always the **first** Professional Experience entry on every CV.
+1. Always the **first** Professional Experience entry on every CV, and always the **most highlighted** role. This is real local Australian industry experience. Give it more bullets, more JD-specific wording, and more summary/cover-letter weight than any Monash or India role.
 2. Master / default CVs keep **all 13 bullets** below (most detailed role on the page). This is the phone-apply master: do not compress Centelon to save space.
-3. JD-tailored CVs keep **5 to 8 bullets** selected from the bank. Reorder toward the JD. Never go below 5.
+3. Every other CV (JD-tailored or otherwise) keeps **6 to 10 bullets** selected from the bank. Reorder toward the JD. **Minimum is 6. Target is 8-10** so the block stays as prominent as the master. Never go below 6. Do not stop at 5.
 4. Professional Summary, Key Highlights, and cover-letter paragraph 2 **lead with Centelon**, then Monash/India proof.
-5. **Never drop this role.** If the CV is over 2 pages, drop Community Leadership and then other roles. Shorten other roles before touching Centelon.
+5. **Never drop this role.** If the CV is over 2 pages, drop Community Leadership and then other roles. Shorten other roles before touching Centelon. Only trim a Centelon bullet after every other role is already at its floor, and never below 6.
 
-**Full bullet bank (source of truth, 13 public bullets. Master CVs keep all 13. Tailored CVs pick 5-8. Reword toward the JD. Do not invent metrics or tools. Do not add internal product names or implementation internals):**
+**Full bullet bank (source of truth, 13 public bullets. Master CVs keep all 13. Every other CV picks 6-10, never fewer than 6. Reword toward the JD. Do not invent metrics or tools. Do not add internal product names or implementation internals):**
 
 1. **Multi-agent architecture.** Shaped architecture for an enterprise multi-agent, multi-LLM automation platform covering agent orchestration, RAG, knowledge sources, enterprise connectors, and workflow control.
 2. **Conversational front end.** Defined conversational interfaces so business users can trigger, review, and steer automated work without using technical consoles.
@@ -142,7 +142,7 @@ Start month is **May 2026**. If it changes later, update `cv-master`, `cv.md`, a
 
 **Which bullets to lead with:**
 
-| JD type | Keep first (still 5-8 total on tailored CVs) |
+| JD type | Keep first (still 6-10 total on tailored CVs; never below 6) |
 |---------|------------------------------|
 | Default / most CVs | 1, 6, 10, 12, 13, then 3, 8, 5 |
 | BA / process / consulting | 12, 13, 3, 10, 1, then 6, 7, 8 |
@@ -162,7 +162,7 @@ Nidhi has limited industry tenure. **Keep Monash masters work under Professional
 
 | Role (cv-master title) | Dates | When to drop |
 |------|-------|--------------|
-| **AI Solutions Analyst (Centelon Solutions)** | **May 2026 - Present** | **NEVER DROP. Always first. Always 5-8 bullets.** Current Australian industry role. |
+| **AI Solutions Analyst (Centelon Solutions)** | **May 2026 - Present** | **NEVER DROP. Always first. Always the most detailed role. 6-10 bullets on every non-master CV (minimum 6). All 13 on the master.** Real local Australian industry role. |
 | New Partner Coordinator | Feb 2026 – Present | **Community Leadership section only** — never in Professional Experience. Drop first if over page limit |
 | Research Data Analyst (Public Health Data Integration) | Feb 2025 – Jun 2025 | Keep for research, public-sector, health, governance, or social-impact JDs |
 | Data Science Lead (Real-Time Fraud Analytics) | Jul 2024 – Nov 2024 | Keep for data engineering, PySpark, streaming, fraud, or scale JDs |
@@ -172,8 +172,8 @@ Nidhi has limited industry tenure. **Keep Monash masters work under Professional
 | **Data Scientist (Statistical Modelling & Predictive Analytics)** | **Mar 2024 – May 2024** | **Keep for statistics, regression, hypothesis testing, R, inferential analytics, or modelling JDs.** Pair with Data Engineer entry; drop only after Aug 2023 roles when space is tight |
 | **Software Engineer (Analytics & Data Applications)** | **Aug 2023 – Oct 2023** | **Keep for most Data Analyst / Graduate / Python / BI roles.** Drop only for senior roles where space is tight |
 | **Database Developer** | **Aug 2023 – Oct 2023** | **Keep for SQL, Oracle, database design, data governance, metadata, data engineering, or analytics JDs.** Drop only after Software Engineer when space is tight — never drop both Aug 2023 roles for SQL-heavy JDs |
-| Program Analyst (Cognizant) | Jan 2022 – May 2022 | Keep for SQL, enterprise, or testing JDs |
-| Data Analyst (Phoenix Global) | Jun 2021 – Jul 2021 | Keep for BI, Tableau, Power BI, or dashboard JDs |
+| Program Analyst (Cognizant) | Jan 2022 – May 2022 | **NEVER DROP.** Official paid industry role in India. Keep at least 3 bullets. |
+| Data Analyst (Phoenix Global) | Jun 2021 – Jul 2021 | **NEVER DROP.** Official paid industry role in India. Keep at least 3 bullets. |
 
 ### Software Engineer (Analytics & Data Applications) entry — always tailor, rarely drop
 
@@ -255,8 +255,8 @@ When customising for a job description (`modes/pdf.md`):
 
 1. Read **`cv-master`** + this file + JD (never skip `cv-master`)
 2. Rewrite **Professional Summary** in **first person** ("I bring...", "I have delivered...") with JD keywords. Pull metrics and bullets from `cv-master`, not memory. No em dashes or en dashes in summary, bullets, or cover letter.
-3. **Reorder and elaborate bullets within each role** toward the JD. Keep **at least 3 bullets** on every role, and **5-8 bullets on Centelon**. Do not drop **Centelon**, **Data Scientist (Statistical Modelling)**, **Data Engineer (ETL & NLP)**, **Database Developer**, or **Software Engineer (Analytics)** unless the CV exceeds 2 pages after shortening wording — and even then, **never drop Centelon**.
-4. If trimming for length: shorten bullets first, then reduce bullets per role only as far as **3** (Centelon only as far as **5**). Then drop the least relevant **whole role**. Never leave 1-2 bullets. Drop order: Community Leadership (New Partner Coordinator) → Research Data Analyst (if non-research JD) → ML Engineer entry → **never drop both** Aug 2023 Database + Software Engineer entries before ETL/NLP or industry roles. **Never drop Centelon.** For stats/regression/R JDs, never drop Statistical Modelling before ETL/NLP; for SQL/Data Analyst/wrangling JDs, follow the same drop order while keeping Centelon first.
+3. **Reorder and elaborate bullets within each role** toward the JD. Keep **at least 3 bullets** on every role, and **6-10 bullets on Centelon** (minimum 6, target 8-10, more than any other role). Do not drop **Centelon**, **Cognizant**, **Phoenix Global**, **Data Scientist (Statistical Modelling)**, **Data Engineer (ETL & NLP)**, **Database Developer**, or **Software Engineer (Analytics)** unless the CV exceeds 2 pages after shortening wording — and even then, **never drop Centelon, Cognizant, or Phoenix Global**.
+4. If trimming for length: shorten bullets first, then reduce bullets per role only as far as **3** (Centelon only as far as **6**). Then drop the least relevant **whole role**. Never leave 1-2 bullets. Drop order: Community Leadership (New Partner Coordinator) → Research Data Analyst (if non-research JD) → ML Engineer entry → other Monash project roles. **Never drop Centelon. Never drop Cognizant. Never drop Phoenix Global.** Never drop both Aug 2023 Database + Software Engineer entries before ETL/NLP. For stats/regression/R JDs, never drop Statistical Modelling before ETL/NLP; for SQL/Data Analyst/wrangling JDs, follow the same drop order while keeping Centelon first and longest.
 5. Write HTML from `templates/cv-template.html`; output to `output/cv-nidhi-chowdary-gadde-{company-slug}-{YYYY-MM-DD}.pdf`
 6. Master (non-tailored) PDF: use full **`cv-master`** content → `output/cv-nidhi-chowdary-gadde-master-{YYYY-MM-DD}.pdf`
 

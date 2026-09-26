@@ -7,7 +7,7 @@
 import { readFileSync, writeFileSync, mkdirSync } from 'fs';
 import { resolve, dirname } from 'path';
 
-const inputPath = resolve(process.argv[2] || 'cover-letter-master.md');
+const inputPath = resolve(process.argv[2] || 'profile/cover-letter-master.md');
 const outputPath = resolve(process.argv[3] || 'output/cover-letter-master.html');
 
 function escapeHtml(text) {

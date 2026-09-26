@@ -11,6 +11,7 @@ System-layer template files used by career-ops scripts and modes. These files ar
 | `portals.example.yml` | Onboarding | Example portal scanner configuration (copy to `portals.yml` to activate) |
 | `states.yml` | `verify-pipeline.mjs`, `normalize-statuses.mjs`, `merge-tracker.mjs` | Canonical application states and their aliases |
 | `jobs.example.csv` | `generate-apply-pack.mjs` | Example job CSV for fast apply packs (copy to `data/jobs.csv`) |
+| `exclusions.example.csv` | `generate-apply-pack.mjs` | Example already-applied list (copy to `data/exclusions.csv`) |
 
 ### cv-template.html
 
@@ -56,3 +57,9 @@ Defines the 8 canonical application states (`Evaluated`, `Applied`, `Responded`,
 Example input for `npm run apply-pack`. Columns: `company`, `role`, `url`, `location`, `salary`, `jd_text`.
 
 **To use:** copy to `data/jobs.csv` (user layer) and replace the sample rows with real JDs. `jd_text` can be quoted multiline JD text, or a relative path such as `jds/amp-pc-analyst.txt`. The apply-pack script does not fetch URLs.
+
+### exclusions.example.csv
+
+Example already-applied list for `npm run apply-pack`. Columns: `company`, `role`, `status`, `date`, `url`.
+
+**To use:** keep the live list at `data/exclusions.csv`. Add a row after you submit an application. Matching jobs in a new CSV are skipped so duplicate CVs and cover letters are not generated.

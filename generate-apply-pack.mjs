@@ -7,7 +7,7 @@
  *   node generate-apply-pack.mjs --csv templates/jobs.example.csv --dry-run
  *   node generate-apply-pack.mjs --csv data/jobs.csv --limit 3 --parallel 2
  *
- * Requires GEMINI_API_KEY in .env (not needed for --dry-run / --help).
+ * Requires GEMINI_API_KEY or OPENAI_API_KEY in .env (not needed for --dry-run / --help).
  */
 
 import { spawn } from 'child_process';
@@ -29,27 +29,32 @@ try {
   // dotenv optional
 }
 
+const PROFILE = join(ROOT, 'profile');
+const CV_SAMPLES = join(PROFILE, 'cv-samples');
+const COVER_SAMPLES = join(PROFILE, 'cover-letter-samples');
+
 const PATHS = {
   applyPack: join(ROOT, 'modes', 'apply-pack.md'),
   profileMd: join(ROOT, 'modes', '_profile.md'),
   profileYml: join(ROOT, 'config', 'profile.yml'),
-  cvMaster: join(ROOT, 'cv-master'),
+  cvMaster: join(PROFILE, 'cv-master.md'),
   cvMd: join(ROOT, 'cv.md'),
-  coverMaster: join(ROOT, 'cover-letter-master.md'),
+  exclusions: join(ROOT, 'data', 'exclusions.csv'),
+  coverMaster: join(PROFILE, 'cover-letter-master.md'),
   gold: {
-    'business-analyst': join(ROOT, 'cv-allegra-consulting-ba.md'),
-    'bi-reporting': join(ROOT, 'cv-saltus-data-reporting-analyst.md'),
-    'data-analyst': join(ROOT, 'cv-amp-pc-analyst.md'),
-    'graduate-analyst': join(ROOT, 'cv-amp-pc-analyst.md'),
-    'data-engineering': join(ROOT, 'cv-saltus-data-reporting-analyst.md'),
-    'ml-modelling': join(ROOT, 'cv-amp-pc-analyst.md'),
-    other: join(ROOT, 'cv-amp-pc-analyst.md'),
+    'business-analyst': join(CV_SAMPLES, 'cv-allegra-consulting-ba.md'),
+    'bi-reporting': join(CV_SAMPLES, 'cv-saltus-data-reporting-analyst.md'),
+    'data-analyst': join(CV_SAMPLES, 'cv-amp-pc-analyst.md'),
+    'graduate-analyst': join(CV_SAMPLES, 'cv-amp-pc-analyst.md'),
+    'data-engineering': join(CV_SAMPLES, 'cv-saltus-data-reporting-analyst.md'),
+    'ml-modelling': join(CV_SAMPLES, 'cv-amp-pc-analyst.md'),
+    other: join(CV_SAMPLES, 'cv-amp-pc-analyst.md'),
   },
   goldCover: {
-    'business-analyst': join(ROOT, 'cover-letter-allegra-consulting.md'),
-    'bi-reporting': join(ROOT, 'cover-letter-amp.md'),
-    'data-analyst': join(ROOT, 'cover-letter-amp.md'),
-    other: join(ROOT, 'cover-letter-amp.md'),
+    'business-analyst': join(COVER_SAMPLES, 'cover-letter-allegra-consulting.md'),
+    'bi-reporting': join(COVER_SAMPLES, 'cover-letter-amp.md'),
+    'data-analyst': join(COVER_SAMPLES, 'cover-letter-amp.md'),
+    other: join(COVER_SAMPLES, 'cover-letter-amp.md'),
   },
   buildCv: join(ROOT, 'build-cv-from-md.mjs'),
   generatePdf: join(ROOT, 'generate-pdf.mjs'),
@@ -59,8 +64,10 @@ const PATHS = {
 const FIT_THRESHOLD = 3.5;
 const DEFAULT_MIN_SALARY = 80000;
 const DEFAULT_PARALLEL = 3;
-const DEFAULT_SCORE_MODEL = process.env.GEMINI_SCORE_MODEL || process.env.GEMINI_MODEL || 'gemini-2.5-flash';
-const DEFAULT_TAILOR_MODEL = process.env.GEMINI_TAILOR_MODEL || process.env.GEMINI_MODEL || 'gemini-2.5-flash';
+const DEFAULT_GEMINI_SCORE_MODEL = process.env.GEMINI_SCORE_MODEL || process.env.GEMINI_MODEL || 'gemini-2.5-flash';
+const DEFAULT_GEMINI_TAILOR_MODEL = process.env.GEMINI_TAILOR_MODEL || process.env.GEMINI_MODEL || 'gemini-2.5-flash';
+const DEFAULT_OPENAI_SCORE_MODEL = process.env.OPENAI_SCORE_MODEL || 'gpt-4o-mini';
+const DEFAULT_OPENAI_TAILOR_MODEL = process.env.OPENAI_TAILOR_MODEL || process.env.OPENAI_MODEL || 'gpt-4o-mini';
 
 function printHelp() {
   console.log(`
@@ -79,19 +86,31 @@ OPTIONS
   --limit N            Process only the first N rows
   --dry-run            Parse CSV and print the plan; no API calls
   --include-stretch    Keep adjacent stretch roles (do not skip 3.0–3.4 or coordinator-style)
+  --all                Generate packs for every row (still scores; do not skip)
   --out <dir>          Output directory (default: output/). Files are written flat; no per-job folders.
-  --model-score <id>   Gemini model for scoring (default: ${DEFAULT_SCORE_MODEL})
-  --model-tailor <id>  Gemini model for tailoring (default: ${DEFAULT_TAILOR_MODEL})
+  --provider <id>     gemini or openai (default: GEMINI_API_KEY, else OPENAI_API_KEY)
+  --model-score <id>   Scoring model
+  --model-tailor <id>  Tailoring model
   --skip-compile       Write markdown only (no PDF/DOCX)
+  --exclusions <path>  Already-applied list (default: data/exclusions.csv)
+  --ignore-exclusions  Do not skip jobs listed in exclusions.csv
   --help               Show this help
 
 CSV COLUMNS
   company, role, url, location, salary, jd_text
+  Aliases accepted: application_url → url, salary_aud_base → salary,
+  job_description → jd_text. Extra context columns (work_arrangement,
+  employment_type) are appended to the JD when present.
   jd_text may be the full JD, or a relative path to a .txt/.md file
   (e.g. jds/amp-pc-analyst.txt). See templates/jobs.example.csv.
 
+EXCLUSIONS
+  data/exclusions.csv columns: company, role, status, date, url
+  Matching jobs (same URL, or same company + role) are skipped so
+  duplicate CVs/cover letters are not generated. Add a row after you apply.
+
 SETUP
-  GEMINI_API_KEY in .env  (same key as gemini-eval.mjs)
+  GEMINI_API_KEY or OPENAI_API_KEY in .env
 `);
 }
 
@@ -102,10 +121,14 @@ function parseArgs(argv) {
     limit: null,
     dryRun: false,
     includeStretch: false,
+    forceApply: false,
     out: join(ROOT, 'output'),
-    modelScore: DEFAULT_SCORE_MODEL,
-    modelTailor: DEFAULT_TAILOR_MODEL,
+    provider: null,
+    modelScore: null,
+    modelTailor: null,
     skipCompile: false,
+    exclusions: PATHS.exclusions,
+    ignoreExclusions: false,
     help: false,
   };
   for (let i = 0; i < argv.length; i++) {
@@ -113,11 +136,15 @@ function parseArgs(argv) {
     if (a === '--help' || a === '-h') opts.help = true;
     else if (a === '--dry-run') opts.dryRun = true;
     else if (a === '--include-stretch') opts.includeStretch = true;
+    else if (a === '--all' || a === '--force-apply') opts.forceApply = true;
     else if (a === '--skip-compile') opts.skipCompile = true;
+    else if (a === '--ignore-exclusions') opts.ignoreExclusions = true;
     else if (a === '--csv' && argv[i + 1]) opts.csv = argv[++i];
+    else if (a === '--exclusions' && argv[i + 1]) opts.exclusions = resolve(argv[++i]);
     else if (a === '--parallel' && argv[i + 1]) opts.parallel = Math.max(1, parseInt(argv[++i], 10) || DEFAULT_PARALLEL);
     else if (a === '--limit' && argv[i + 1]) opts.limit = Math.max(1, parseInt(argv[++i], 10) || 1);
     else if (a === '--out' && argv[i + 1]) opts.out = resolve(argv[++i]);
+    else if (a === '--provider' && argv[i + 1]) opts.provider = String(argv[++i]).toLowerCase();
     else if (a === '--model-score' && argv[i + 1]) opts.modelScore = argv[++i];
     else if (a === '--model-tailor' && argv[i + 1]) opts.modelTailor = argv[++i];
     else if (!a.startsWith('--') && !opts.csv) opts.csv = a;
@@ -177,31 +204,150 @@ function loadJobs(csvPath) {
   const table = parseCsv(raw).filter((r) => r.length && !String(r[0]).trim().startsWith('#'));
   if (table.length < 2) throw new Error('CSV needs a header row and at least one job row');
   const header = table[0].map((h) => h.trim().toLowerCase().replace(/\s+/g, '_'));
-  const idx = (name) => header.indexOf(name);
-  const required = ['company', 'role', 'jd_text'];
-  for (const col of required) {
-    if (idx(col) < 0) throw new Error(`CSV missing required column: ${col}`);
+  const getNamed = (cells, names) => {
+    for (const name of names) {
+      const n = header.indexOf(name);
+      if (n >= 0 && String(cells[n] || '').trim()) return String(cells[n] || '').trim();
+    }
+    return '';
+  };
+  const hasAny = (names) => names.some((name) => header.indexOf(name) >= 0);
+  if (!hasAny(['company'])) throw new Error('CSV missing required column: company');
+  if (!hasAny(['role'])) throw new Error('CSV missing required column: role');
+  if (!hasAny(['jd_text', 'job_description'])) {
+    throw new Error('CSV missing required column: jd_text (or job_description)');
   }
   const jobs = [];
   table.slice(1).forEach((cells, i) => {
+    const company = getNamed(cells, ['company']);
+    const role = getNamed(cells, ['role']);
+    if (!company && !role) return;
+    const jd = getNamed(cells, ['jd_text', 'job_description']);
+    const extras = [
+      getNamed(cells, ['work_arrangement']) && `Work arrangement: ${getNamed(cells, ['work_arrangement'])}`,
+      getNamed(cells, ['employment_type']) && `Employment type: ${getNamed(cells, ['employment_type'])}`,
+    ].filter(Boolean);
+    jobs.push({
+      index: i + 1,
+      company,
+      role,
+      url: getNamed(cells, ['url', 'application_url']),
+      location: getNamed(cells, ['location']),
+      salary: getNamed(cells, ['salary', 'salary_aud_base']),
+      jdRaw: extras.length ? `${jd}\n\n${extras.join('\n')}` : jd,
+    });
+  });
+  return jobs;
+}
+
+function normalizeKeyPart(s) {
+  return String(s || '')
+    .toLowerCase()
+    .normalize('NFKD')
+    .replace(/&/g, ' and ')
+    .replace(/[^a-z0-9]+/g, ' ')
+    .replace(/\b(pty|ltd|limited|inc|llc|the)\b/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function companyKey(s) {
+  return normalizeKeyPart(s)
+    .replace(/\b(group|australia|vic|victoria)\b/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function urlTokens(u) {
+  const raw = String(u || '').trim();
+  if (!raw) return { href: '', ids: [] };
+  let href = raw.toLowerCase().split('#')[0];
+  try {
+    const parsed = new URL(raw);
+    parsed.hash = '';
+    parsed.search = '';
+    href = parsed.href.toLowerCase().replace(/\/$/, '');
+  } catch {
+    href = href.split('?')[0].replace(/\/$/, '');
+  }
+  const ids = [];
+  const li = raw.match(/linkedin\.com\/jobs\/view\/[^/?]*?(\d{8,})/i);
+  if (li) ids.push(`li:${li[1]}`);
+  const gh = raw.match(/greenhouse\.io\/[^/]+\/jobs\/(\d+)/i);
+  if (gh) ids.push(`gh:${gh[1]}`);
+  const indeed = raw.match(/[?&]jk=([a-f0-9]+)/i);
+  if (indeed) ids.push(`indeed:${indeed[1]}`);
+  const careersVic = raw.match(/in_jnCounter=(\d+)/i);
+  if (careersVic) ids.push(`vic:${careersVic[1]}`);
+  return { href, ids };
+}
+
+function loadExclusions(path) {
+  if (!path || !existsSync(path)) return [];
+  const raw = readFileSync(path, 'utf8').replace(/^\uFEFF/, '');
+  const table = parseCsv(raw).filter((r) => r.length && !String(r[0]).trim().startsWith('#'));
+  if (table.length < 2) return [];
+  const header = table[0].map((h) => h.trim().toLowerCase().replace(/\s+/g, '_'));
+  const idx = (name) => header.indexOf(name);
+  const rows = [];
+  for (const cells of table.slice(1)) {
     const get = (name) => {
       const n = idx(name);
       return n < 0 ? '' : (cells[n] || '').trim();
     };
     const company = get('company');
     const role = get('role');
-    if (!company && !role) return;
-    jobs.push({
-      index: i + 1,
+    const url = get('url');
+    if (!company && !role && !url) continue;
+    rows.push({
       company,
       role,
-      url: get('url'),
-      location: get('location'),
-      salary: get('salary'),
-      jdRaw: get('jd_text'),
+      status: get('status') || 'Applied',
+      date: get('date'),
+      url,
+      notes: get('notes'),
     });
-  });
-  return jobs;
+  }
+  return rows;
+}
+
+function findExclusion(job, exclusions) {
+  if (!exclusions?.length) return null;
+  const jobUrl = urlTokens(job.url);
+  const jobCompany = companyKey(job.company);
+  const jobRole = normalizeKeyPart(job.role);
+  for (const row of exclusions) {
+    const rowUrl = urlTokens(row.url);
+    if (jobUrl.href && rowUrl.href && jobUrl.href === rowUrl.href) return row;
+    if (jobUrl.ids.length && rowUrl.ids.some((id) => jobUrl.ids.includes(id))) return row;
+    if (
+      jobCompany &&
+      jobRole &&
+      companyKey(row.company) === jobCompany &&
+      normalizeKeyPart(row.role) === jobRole
+    ) {
+      return row;
+    }
+  }
+  return null;
+}
+
+function excludedResult(job, hit) {
+  return {
+    company: job.company,
+    role: job.role,
+    url: job.url,
+    slug: `${slugify(job.company)}-${slugify(job.role)}`,
+    dir: '',
+    score: '',
+    decision: 'EXCLUDED',
+    reason: `Already applied${hit.date ? ` ${hit.date}` : ''} (${hit.status || 'Applied'})`,
+    cvPdf: '',
+    coverDocx: '',
+    pages: '',
+    qa: '',
+    elapsedMs: 0,
+  };
 }
 
 function resolveJd(job) {
@@ -368,14 +514,66 @@ async function geminiText({ apiKey, modelName, system, user, temperature, maxOut
   return result.response.text();
 }
 
-async function withRetry(fn, attempts = 2) {
+async function openaiChat({ apiKey, modelName, system, user, temperature, maxOutputTokens, json }) {
+  let res;
+  try {
+    res = await fetch('https://api.openai.com/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        model: modelName,
+        temperature,
+        max_tokens: maxOutputTokens,
+        ...(json ? { response_format: { type: 'json_object' } } : {}),
+        messages: [
+          { role: 'system', content: system },
+          { role: 'user', content: user },
+        ],
+      }),
+    });
+  } catch (err) {
+    const cause = err.cause?.message || err.cause?.code || err.message;
+    throw new Error(`OpenAI fetch failed: ${cause}`);
+  }
+  const payload = await res.json().catch(() => ({}));
+  if (!res.ok) {
+    const msg = payload?.error?.message || res.statusText || `HTTP ${res.status}`;
+    throw new Error(`OpenAI ${res.status}: ${msg}`);
+  }
+  const text = payload?.choices?.[0]?.message?.content;
+  if (!text) throw new Error('OpenAI returned empty content');
+  return text;
+}
+
+async function callLlmJson(ctx, args) {
+  if (ctx.provider === 'openai') {
+    const text = await openaiChat({ ...args, apiKey: ctx.apiKey, json: true });
+    return extractJson(text);
+  }
+  return geminiJson({ ...args, apiKey: ctx.apiKey });
+}
+
+async function callLlmText(ctx, args) {
+  if (ctx.provider === 'openai') {
+    return openaiChat({ ...args, apiKey: ctx.apiKey, json: false });
+  }
+  return geminiText({ ...args, apiKey: ctx.apiKey });
+}
+
+async function withRetry(fn, attempts = 6) {
   let last;
   for (let i = 0; i < attempts; i++) {
     try {
       return await fn();
     } catch (err) {
       last = err;
-      if (i < attempts - 1) await new Promise((r) => setTimeout(r, 1500 * (i + 1)));
+      const msg = err.message || String(err);
+      const wait = msg.match(/try again in ([\d.]+)\s*s/i);
+      const delay = wait ? Math.ceil(parseFloat(wait[1]) * 1000) + 2000 : 2000 * (i + 1);
+      if (i < attempts - 1) await new Promise((r) => setTimeout(r, delay));
     }
   }
   throw last;
@@ -434,28 +632,53 @@ function dropRole(md, roleRe) {
   return md.replace(experience, kept.join('\n').trim());
 }
 
-function trimLongestRoleBullet(md) {
-  const experience = getSection(md, 'PROFESSIONAL EXPERIENCE');
-  if (!experience) return md;
-  const blocks = experience.split(/\n(?=\*\*)/).filter(Boolean);
-  let bestIdx = -1;
-  let bestCount = 0;
-  blocks.forEach((b, i) => {
-    const n = (b.match(/^- /gm) || []).length;
-    if (n > bestCount) {
-      bestCount = n;
-      bestIdx = i;
-    }
-  });
-  if (bestIdx < 0 || bestCount <= 3) return md;
-  const lines = blocks[bestIdx].split('\n');
+function roleBulletCount(block) {
+  return (block.match(/^- /gm) || []).length;
+}
+
+function isCentelonBlock(block) {
+  return /Centelon Solutions/i.test(block);
+}
+
+function trimOneBullet(block) {
+  const lines = block.split('\n');
   for (let i = lines.length - 1; i >= 0; i--) {
     if (lines[i].startsWith('- ')) {
       lines.splice(i, 1);
       break;
     }
   }
-  blocks[bestIdx] = lines.join('\n');
+  return lines.join('\n');
+}
+
+function trimLongestRoleBullet(md) {
+  const experience = getSection(md, 'PROFESSIONAL EXPERIENCE');
+  if (!experience) return md;
+  const blocks = experience.split(/\n(?=\*\*)/).filter(Boolean);
+  // Other roles floor at 3. Centelon (local Australian industry role) floors at 6
+  // and is trimmed only after every other role is already at its floor.
+  let bestIdx = -1;
+  let bestCount = 0;
+  blocks.forEach((b, i) => {
+    if (isCentelonBlock(b)) return;
+    const n = roleBulletCount(b);
+    if (n > 3 && n > bestCount) {
+      bestCount = n;
+      bestIdx = i;
+    }
+  });
+  if (bestIdx < 0) {
+    blocks.forEach((b, i) => {
+      if (!isCentelonBlock(b)) return;
+      const n = roleBulletCount(b);
+      if (n > 6 && n > bestCount) {
+        bestCount = n;
+        bestIdx = i;
+      }
+    });
+  }
+  if (bestIdx < 0) return md;
+  blocks[bestIdx] = trimOneBullet(blocks[bestIdx]);
   return md.replace(experience, blocks.join('\n').trim());
 }
 
@@ -489,6 +712,7 @@ function allowedOrgs(cvMaster) {
     'Grad Girls Tech Program',
     'Women4STEM',
     'Gandhi Institute of Technology & Management',
+    'Centelon Solutions',
   ]);
   const blob = `${getSection(cvMaster, 'PROFESSIONAL EXPERIENCE')}\n${getSection(cvMaster, 'COMMUNITY LEADERSHIP')}\n${getSection(cvMaster, 'EDUCATION')}`;
   for (const line of blob.split(/\r?\n/)) {
@@ -526,6 +750,11 @@ function qaPack({ cvMarkdown, coverMarkdown, keywords, cvMaster }) {
     warnings.push(`keyword coverage ${(coverage * 100).toFixed(0)}% (${hits.length}/${kw.length})`);
   }
   if (/zara/i.test(cvMarkdown)) errors.push('mentions Zara (must not appear on tailored CVs)');
+  if (!/Centelon Solutions/i.test(cvMarkdown)) {
+    errors.push('missing Centelon Solutions (lead Australian industry role; never drop; keep 6-10 bullets)');
+  }
+  if (!/Cognizant/i.test(cvMarkdown)) errors.push('missing Cognizant (never drop this industry role)');
+  if (!/Phoenix Global/i.test(cvMarkdown)) errors.push('missing Phoenix Global (never drop this industry role)');
   if (/FIT\d{4}/i.test(cvMarkdown)) warnings.push('contains unit codes (FIT####)');
   const allow = allowedOrgs(cvMaster).map((o) => o.toLowerCase());
   const experience = getSection(cvMarkdown, 'PROFESSIONAL EXPERIENCE') + '\n' + getSection(cvMarkdown, 'COMMUNITY LEADERSHIP');
@@ -534,7 +763,9 @@ function qaPack({ cvMarkdown, coverMarkdown, keywords, cvMaster }) {
     const lines = block.split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
     const roleLine = lines[0] || 'role';
     const bullets = lines.filter((l) => l.startsWith('- ')).length;
-    if (/^\*\*.+\*\*\s*\|/.test(roleLine) && bullets < 3) {
+    if (/Centelon Solutions/i.test(block) && bullets < 6) {
+      errors.push(`Centelon Solutions has ${bullets} bullets; keep 6-10 (minimum 6, most highlighted role)`);
+    } else if (/^\*\*.+\*\*\s*\|/.test(roleLine) && bullets < 3) {
       errors.push(`fewer than 3 bullets: ${roleLine.slice(0, 80)} (${bullets})`);
     }
     const companyLine = lines.find((l, i) => i > 0 && !l.startsWith('- ') && !l.includes('|'));
@@ -547,9 +778,6 @@ function qaPack({ cvMarkdown, coverMarkdown, keywords, cvMaster }) {
     }
   }
   const summary = getSection(cvMarkdown, 'PROFESSIONAL SUMMARY');
-  if (summary && !/\bI\b/.test(summary)) {
-    errors.push('Professional Summary is not first person (missing "I")');
-  }
   if (/\b(Brings|Holds|Possesses|Seasoned|Passionate|Results-driven|Eager)\b/.test(summary)) {
     errors.push('Professional Summary uses third-person or junior/AI phrasing');
   }
@@ -654,6 +882,18 @@ async function processJob(job, ctx) {
   };
 
   try {
+    const candidateEarly = kebabName(ctx.fullName);
+    const existingPdf = join(dir, `cv-${candidateEarly}-${slug}-${date}.pdf`);
+    const existingDocx = join(dir, `cover-letter-${slug}-${date}.docx`);
+    if (existsSync(existingPdf) && existsSync(existingDocx)) {
+      result.decision = 'APPLY';
+      result.reason = 'already generated';
+      result.cvPdf = existingPdf;
+      result.coverDocx = existingDocx;
+      result.elapsedMs = Date.now() - started;
+      return result;
+    }
+
     const jd = resolveJd(job);
     const vars = {
       FIT_THRESHOLD: String(ctx.fitThreshold),
@@ -673,8 +913,7 @@ async function processJob(job, ctx) {
     });
 
     const score = await withRetry(() =>
-      geminiJson({
-        apiKey: ctx.apiKey,
+      callLlmJson(ctx, {
         modelName: ctx.modelScore,
         system: scoreSystem,
         user: `Score this job. Return JSON only.\n\n${user}`,
@@ -699,6 +938,11 @@ async function processJob(job, ctx) {
       decision = 'SKIP';
       if (!skipFlags.includes('comp-floor')) skipFlags.push('comp-floor');
       reason = reason || `Stated salary ceiling ${ceiling} below ${ctx.minSalary}`;
+    }
+
+    if (ctx.forceApply) {
+      decision = 'APPLY';
+      reason = reason || 'Forced generate (--all)';
     }
 
     const scorePayload = {
@@ -740,8 +984,7 @@ async function processJob(job, ctx) {
     });
 
     const tailorText = await withRetry(() =>
-      geminiText({
-        apiKey: ctx.apiKey,
+      callLlmText(ctx, {
         modelName: ctx.modelTailor,
         system: tailorSystem,
         user: `Tailor the CV and cover letter for this job. Output the three blocks exactly.\n\n${tailorUser}`,
@@ -774,17 +1017,21 @@ async function processJob(job, ctx) {
       pages = parsePageCount(pdfRun.stdout);
 
       if (pages != null && pages > 2) {
-        const trimmed = autoTrim(cvMarkdown, jd);
-        if (trimmed.action !== 'no further trim available') {
+        const actions = [];
+        for (let i = 0; i < 6 && pages > 2; i++) {
+          const trimmed = autoTrim(cvMarkdown, jd);
+          if (trimmed.action === 'no further trim available') {
+            extraWarnings.push(`PDF is ${pages} pages; no further trim available`);
+            break;
+          }
           cvMarkdown = trimmed.md;
           writeFileSync(cvMdPath, cvMarkdown.endsWith('\n') ? cvMarkdown : `${cvMarkdown}\n`, 'utf8');
           await runNode(PATHS.buildCv, [cvMdPath, htmlPath]);
           const pdfRun2 = await runNode(PATHS.generatePdf, [htmlPath, pdfPath, '--format=a4']);
           pages = parsePageCount(pdfRun2.stdout);
-          extraWarnings.push(`auto-trim: ${trimmed.action}; pages now ${pages ?? '?'}`);
-        } else {
-          extraWarnings.push(`PDF is ${pages} pages; no further trim available`);
+          actions.push(trimmed.action);
         }
+        if (actions.length) extraWarnings.push(`auto-trim: ${actions.join('; ')}; pages now ${pages ?? '?'}`);
       }
 
       try {
@@ -814,6 +1061,7 @@ async function processJob(job, ctx) {
     result.elapsedMs = Date.now() - started;
     return result;
   } catch (err) {
+    result.decision = 'ERROR';
     result.reason = (err.message || String(err)).replace(/\s+/g, ' ').slice(0, 300);
     result.elapsedMs = Date.now() - started;
     writeFileSync(
@@ -849,11 +1097,37 @@ async function main() {
   let jobs = loadJobs(csvPath);
   if (opts.limit) jobs = jobs.slice(0, opts.limit);
 
+  const exclusions = opts.ignoreExclusions ? [] : loadExclusions(opts.exclusions);
+  const excludedHits = [];
+  const pending = [];
+  for (const job of jobs) {
+    const hit = findExclusion(job, exclusions);
+    if (hit) excludedHits.push({ job, hit });
+    else pending.push(job);
+  }
+
   console.log(`\n📦  Apply Packs  |  ${jobs.length} job(s) from ${csvPath}`);
-  console.log(`    parallel=${opts.parallel}  dry-run=${opts.dryRun}  stretch=${opts.includeStretch}\n`);
+  console.log(
+    `    parallel=${opts.parallel}  dry-run=${opts.dryRun}  stretch=${opts.includeStretch}  all=${opts.forceApply}`
+  );
+  if (!opts.ignoreExclusions) {
+    console.log(
+      `    exclusions=${existsSync(opts.exclusions) ? opts.exclusions : '(none)'}  skipped=${excludedHits.length}`
+    );
+  }
+  console.log('');
+
+  if (excludedHits.length) {
+    for (const { job, hit } of excludedHits) {
+      console.log(
+        `⏭  EXCLUDED  ${job.company} — ${job.role}  (applied ${hit.date || 'previously'})`
+      );
+    }
+    console.log('');
+  }
 
   if (opts.dryRun) {
-    for (const job of jobs) {
+    for (const job of pending) {
       let jdNote = 'inline JD';
       try {
         const jd = resolveJd(job);
@@ -868,21 +1142,40 @@ async function main() {
     return;
   }
 
-  const apiKey = process.env.GEMINI_API_KEY;
-  if (!apiKey) {
-    console.error(`
-❌  GEMINI_API_KEY not found.
+  jobs = pending;
 
-   1. Get a key at https://aistudio.google.com/apikey
-   2. Add it to .env:   GEMINI_API_KEY=your_key_here
+  let generated = [];
+  if (jobs.length) {
+  const provider =
+    opts.provider ||
+    (process.env.GEMINI_API_KEY ? 'gemini' : process.env.OPENAI_API_KEY ? 'openai' : null);
+  const apiKey =
+    provider === 'gemini'
+      ? process.env.GEMINI_API_KEY
+      : provider === 'openai'
+        ? process.env.OPENAI_API_KEY
+        : '';
+  if (!provider || !apiKey) {
+    console.error(`
+❌  No LLM API key found.
+
+   Add one of these to .env:
+     GEMINI_API_KEY=your_key_here
+     OPENAI_API_KEY=your_key_here
 `);
     process.exit(1);
+  }
+  if (!opts.modelScore) {
+    opts.modelScore = provider === 'openai' ? DEFAULT_OPENAI_SCORE_MODEL : DEFAULT_GEMINI_SCORE_MODEL;
+  }
+  if (!opts.modelTailor) {
+    opts.modelTailor = provider === 'openai' ? DEFAULT_OPENAI_TAILOR_MODEL : DEFAULT_GEMINI_TAILOR_MODEL;
   }
 
   const profileYml = readOptional(PATHS.profileYml);
   const profileMd = readOptional(PATHS.profileMd);
   const cvMaster = existsSync(PATHS.cvMaster)
-    ? readRequired(PATHS.cvMaster, 'cv-master')
+    ? readRequired(PATHS.cvMaster, 'profile/cv-master.md')
     : readRequired(PATHS.cvMd, 'cv.md');
   const coverMaster = readOptional(PATHS.coverMaster);
   const sections = splitModeSections(readRequired(PATHS.applyPack, 'modes/apply-pack.md'));
@@ -896,7 +1189,9 @@ async function main() {
     outDir: opts.out,
     modelScore: opts.modelScore,
     modelTailor: opts.modelTailor,
+    provider,
     includeStretch: opts.includeStretch,
+    forceApply: opts.forceApply,
     skipCompile: opts.skipCompile,
     fitThreshold: FIT_THRESHOLD,
     minSalary,
@@ -908,9 +1203,9 @@ async function main() {
     sections,
   };
 
-  console.log(`🤖  score=${opts.modelScore}  tailor=${opts.modelTailor}\n`);
+  console.log(`🤖  provider=${provider}  score=${opts.modelScore}  tailor=${opts.modelTailor}\n`);
 
-  const results = await mapPool(jobs, opts.parallel, async (job) => {
+  generated = await mapPool(jobs, opts.parallel, async (job) => {
     process.stdout.write(`→  ${job.company} — ${job.role}\n`);
     const row = await processJob(job, ctx);
     const mark = row.decision === 'APPLY' ? '✅' : row.decision === 'SKIP' ? '⏭ ' : '❌';
@@ -919,6 +1214,10 @@ async function main() {
     );
     return row;
   });
+  } else {
+    mkdirSync(opts.out, { recursive: true });
+  }
+  const results = [...excludedHits.map(({ job, hit }) => excludedResult(job, hit)), ...generated];
 
   const indexPath = join(opts.out, '_index.csv');
   const header = [
@@ -958,9 +1257,12 @@ async function main() {
 
   const applied = results.filter((r) => r.decision === 'APPLY').length;
   const skipped = results.filter((r) => r.decision === 'SKIP').length;
+  const excluded = results.filter((r) => r.decision === 'EXCLUDED').length;
   const errors = results.filter((r) => r.decision === 'ERROR').length;
   console.log(`\n${'─'.repeat(60)}`);
-  console.log(`  APPLY ${applied}  |  SKIP ${skipped}  |  ERROR ${errors}  |  ${results.length} total`);
+  console.log(
+    `  APPLY ${applied}  |  SKIP ${skipped}  |  EXCLUDED ${excluded}  |  ERROR ${errors}  |  ${results.length} total`
+  );
   console.log(`  Index: ${indexPath}`);
   console.log(`${'─'.repeat(60)}\n`);
   console.log('Review APPLY rows, then upload the PDF and DOCX yourself. This script does not submit applications.\n');

@@ -53,12 +53,14 @@ AI-powered job search automation built on Claude Code: pipeline tracking, offer 
 | `data/applications.md` | Application tracker |
 | `data/pipeline.md` | Inbox of pending URLs |
 | `data/scan-history.tsv` | Scanner dedup history |
+| `data/exclusions.csv` | Already-applied jobs (skip when generating apply packs) |
 | `portals.yml` | Query and company config |
 | `templates/cv-template.html` | HTML template for CVs |
 | `templates/cv-template.tex` | LaTeX/Overleaf template for CVs |
 | `generate-pdf.mjs` | Playwright: HTML to PDF |
 | `generate-latex.mjs` | LaTeX CV validator + pdflatex compiler |
 | `article-digest.md` | Compact proof points from portfolio (optional) |
+| `profile/` | Master CV/cover letter + per-archetype gold samples read by `generate-apply-pack.mjs`. Gitignored except `README.md`. Never write generated applications here — those go to `output/`. |
 | `interview-prep/story-bank.md` | Accumulated STAR+R stories across evaluations |
 | `interview-prep/{company}-{role}.md` | Company-specific interview intel reports |
 | `analyze-patterns.mjs` | Pattern analysis script (JSON output) |

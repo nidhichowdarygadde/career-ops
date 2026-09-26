@@ -2,6 +2,8 @@
 
 Thin pipeline: light fit score, then one tailor pass. Do **not** write an evaluation report, legitimacy block, interview prep, or salary research essay.
 
+**Exclusions (mandatory):** Before scoring or generating a CV/cover letter, check `data/exclusions.csv`. Skip any job whose URL matches, or whose company + role matches, an Applied row. Do not regenerate packs for those listings. After the user actually submits an application, append a row to that file (company, role, Applied, date, url).
+
 Facts come only from **CV MASTER** (injected). Layout (section order, heading names, contact fence) comes from **GOLD CV** / **GOLD COVER** when provided. **PROFILE MD Writing Voice and CV rules override GOLD examples** (first person summary, senior tone, no AI dashes, minimum 3 bullets). Do not copy GOLD CV summary wording if it is third person.
 
 Never invent employers, dates, metrics, tools, or projects. Reword and reorder only.
@@ -99,7 +101,7 @@ Specialisation: ...
 - **Senior, not junior.** Ownership and delivery language. No "eager to learn", "seeking to grow", "recent graduate looking to", "exposure to", "passionate", "results-driven", "seasoned". Do not invent extra years of experience.
 - **Professional Summary uses implied professional voice.** No "I currently contribute". No "Brings Python experience". Write senior CV prose: "Data and AI professional currently delivering...". Cover letters stay first person.
 - **No AI punctuation in CV or cover letter.** No em dashes, en dashes, arrows, or decorative symbols. Date ranges: `Mon YYYY - Mon YYYY`. Sentences use comma, colon, or a full stop.
-- **At least 3 bullets on every role**, written toward this JD. Elaborate with real CV MASTER facts and JD vocabulary. Never 1-2 bullets. If over 2 pages, drop a whole role (see drop order). Do not compress below 3. The first Professional Experience role in CV MASTER (current Australian industry role) is the exception: **minimum 5 bullets, default 8 on tailored CVs, all 13 on the master CV**. Never label it intern.
+- **At least 3 bullets on every role**, written toward this JD. Elaborate with real CV MASTER facts and JD vocabulary. Never 1-2 bullets. If over 2 pages, drop a whole role (see drop order). Do not compress below 3. The first Professional Experience role in CV MASTER (Centelon Solutions, real local Australian industry experience) is the exception: **minimum 6 bullets, target 8-10 on every tailored CV, all 13 on the master CV**. It must be the most detailed role on the page. Never label it intern.
 
 ### Tailoring rules
 
@@ -108,9 +110,10 @@ Follow PROFILE MD CV Formatting, Writing Voice, CV Tailoring Rules, per-role the
 - Source of truth is CV MASTER. GOLD CV is layout only, not summary person or dash style.
 - Rewrite Professional Summary in first person with JD vocabulary. Keep it 3-5 sentences. Visa stays in the header; do not lean on "I just graduated".
 - Reorder and elaborate bullets **within** each role by JD relevance. Keep **3 or more** bullets per role.
-- Keep the first Professional Experience role in CV MASTER (current Australian industry role at Centelon) **always first**, with **5-8 bullets** on tailored CVs and **all 13 bullets** on the master CV. Never drop it. Never call it intern, internship, or placement.
+- Keep the first Professional Experience role in CV MASTER (Centelon Solutions, Melbourne) **always first and always the most highlighted role**, with **6-10 bullets** on every tailored CV (never below 6) and **all 13 bullets** on the master CV. Never drop it. Never call it intern, internship, or placement.
+- **Never drop Cognizant (Program Analyst) or Phoenix Global (Data Analyst).** These are official paid industry roles. Keep at least 3 bullets on each. Place them after Monash roles, still in reverse chronological order.
 - Keep Data Engineer (ETL & NLP), Data Scientist (Statistical Modelling), Database Developer, and Software Engineer (Analytics) unless the CV would exceed **2 pages** after shortening wording (still at least 3 bullets each).
-- Drop order if still too long: Community Leadership first, then Machine Learning Engineer, then Research Data Analyst (only if JD is not research/health/public-sector). Then drop further whole roles. Never drop the current Australian industry role. Never drop both Aug 2023 Database + Software Engineer before ETL/NLP or industry roles (Centelon, Cognizant, Phoenix Global). Never go 5 to 4 to 3 to 2; stop at 3 bullets (stop at 5 for the lead industry role).
+- Drop order if still too long: Community Leadership first, then Machine Learning Engineer, then Research Data Analyst (only if JD is not research/health/public-sector). Then drop further **Monash project** roles. Never drop Centelon, Cognizant, or Phoenix Global. Never drop both Aug 2023 Database + Software Engineer before ETL/NLP. Never go 5 to 4 to 3 to 2; stop at 3 bullets (stop at 6 for Centelon). Trim other roles before removing any Centelon bullet.
 - Monash employer line is `Monash University` only. No unit codes, no course names.
 - Skills: lead with JD tools the candidate actually has. Do not add tools absent from CV MASTER / PROFILE.
 - Target **one to two A4 pages**. Prefer substance (3+ bullets, first-person summary) over a sparse junior one-pager.
@@ -126,9 +129,10 @@ Follow PROFILE MD CV Formatting, Writing Voice, CV Tailoring Rules, per-role the
 - "Work Experience" as a heading (must be Professional Experience)
 - Third-person summary ("Brings", "Holds", "Experienced professional who")
 - Fewer than 3 bullets on any role
-- Fewer than 5 bullets on the current Australian industry role (first role in CV MASTER)
+- Fewer than 6 bullets on Centelon Solutions (first role in CV MASTER). Every resume keeps 6-10; the master keeps all 13. Centelon must have more bullets than any other role.
 - Intern, internship, graduate intern, vacationer, or placement language on candidate-facing documents
 - Em dashes or en dashes in CV or cover letter body
+- Dropping Cognizant or Phoenix Global
 
 ### Cover letter
 
@@ -148,3 +152,5 @@ Match GOLD COVER shape when provided; otherwise COVER MASTER slots.
 ## Inputs (injected by generate-apply-pack.mjs)
 
 The user message will contain: company, role, url, location, salary, JD text, PROFILE YML, PROFILE MD, CV MASTER, optional GOLD CV, optional GOLD COVER, COVER MASTER.
+
+`generate-apply-pack.mjs` also reads `data/exclusions.csv` and skips matching jobs before SCORE/TAILOR.
