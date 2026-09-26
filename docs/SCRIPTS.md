@@ -234,7 +234,7 @@ CSV columns: `company,role,url,location,salary,jd_text`. `jd_text` may be the fu
 
 Already-applied jobs live in `data/exclusions.csv` (company, role, status, date, url). Matching rows are skipped before scoring so duplicate CVs/cover letters are not generated. Use `--ignore-exclusions` only if you intentionally want to regenerate. See `templates/exclusions.example.csv`.
 
-Source documents live in `profile/`: `profile/cv-master.md` (falls back to `cv.md`), `profile/cover-letter-master.md`, and the per-archetype gold references in `profile/cv-samples/` and `profile/cover-letter-samples/`. See `profile/README.md` for the archetype mapping.
+Tailoring reads your CV from `cv.md` — the same single source of truth the master CV build uses. Style references live in `profile/`: `profile/cover-letter-master.md` plus the per-archetype gold samples in `profile/cv-samples/` and `profile/cover-letter-samples/`. See `profile/README.md` for the archetype mapping.
 
 Writes CV PDFs and cover letter DOCXs **flat into `output/`** (dated filenames, no per-job folders). Review those files, then upload them yourself.
 

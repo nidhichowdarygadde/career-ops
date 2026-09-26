@@ -60,7 +60,7 @@ AI-powered, CLI-agnostic job search automation: pipeline tracking, offer evaluat
 | `generate-pdf.mjs` | Playwright: HTML to PDF |
 | `generate-latex.mjs` | LaTeX CV validator + pdflatex compiler |
 | `article-digest.md` | Compact proof points from portfolio (optional) |
-| `profile/` | Master CV/cover letter + per-archetype gold samples read by `generate-apply-pack.mjs`. Gitignored except `README.md`. Never write generated applications here — those go to `output/`. |
+| `profile/` | Master cover letter + per-archetype gold samples read by `generate-apply-pack.mjs`. The CV always comes from `cv.md`, never a copy here. Gitignored except `README.md`. Never write generated applications here — those go to `output/`. |
 | `interview-prep/story-bank.md` | Accumulated STAR+R stories across evaluations |
 | `interview-prep/{company}-{role}.md` | Company-specific interview intel reports |
 | `analyze-patterns.mjs` | Pattern analysis script (JSON output) |

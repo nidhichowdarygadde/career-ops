@@ -9,7 +9,7 @@ These files contain your personal data, customizations, and work product. Update
 | File | Purpose |
 |------|---------|
 | `cv.md` | Your CV in markdown |
-| `profile/*` | Your master CV/cover letter and tailored gold samples used by apply-pack (except `profile/README.md`, which is system-owned documentation delivered by updates) |
+| `profile/*` | Your master cover letter and tailored gold samples used by apply-pack (except `profile/README.md`, which is system-owned documentation delivered by updates) |
 | `config/profile.yml` | Your identity, targets, comp range |
 | `modes/_profile.md` | Your archetypes, narrative, negotiation scripts |
 | `article-digest.md` | Your proof points from portfolio |

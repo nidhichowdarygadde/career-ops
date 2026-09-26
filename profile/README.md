@@ -1,7 +1,10 @@
 # profile/
 
-Your master CV and cover letter, plus the tailored versions that `generate-apply-pack.mjs`
+Your master cover letter, plus the tailored CVs and letters that `generate-apply-pack.mjs`
 uses as style references when it writes a new application.
+
+Your CV itself is **not** here — `cv.md` in the project root is the single source of truth
+for that, and both the master CV build and every tailored resume read from it.
 
 Everything in here except this README is gitignored — these documents contain your name,
 phone number, and full work history, so they stay on your machine.
@@ -10,7 +13,6 @@ phone number, and full work history, so they stay on your machine.
 
 | Path | Purpose |
 |------|---------|
-| `cv-master.md` | Master CV. Falls back to root `cv.md` if absent. |
 | `cover-letter-master.md` | Master cover letter (optional). |
 | `cv-samples/` | Tailored CVs used as gold references per archetype. |
 | `cover-letter-samples/` | Tailored cover letters used as gold references per archetype. |

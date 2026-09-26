@@ -37,8 +37,7 @@ const PATHS = {
   applyPack: join(ROOT, 'modes', 'apply-pack.md'),
   profileMd: join(ROOT, 'modes', '_profile.md'),
   profileYml: join(ROOT, 'config', 'profile.yml'),
-  cvMaster: join(PROFILE, 'cv-master.md'),
-  cvMd: join(ROOT, 'cv.md'),
+  cvMaster: join(ROOT, 'cv.md'),
   exclusions: join(ROOT, 'data', 'exclusions.csv'),
   coverMaster: join(PROFILE, 'cover-letter-master.md'),
   gold: {
@@ -1174,9 +1173,7 @@ async function main() {
 
   const profileYml = readOptional(PATHS.profileYml);
   const profileMd = readOptional(PATHS.profileMd);
-  const cvMaster = existsSync(PATHS.cvMaster)
-    ? readRequired(PATHS.cvMaster, 'profile/cv-master.md')
-    : readRequired(PATHS.cvMd, 'cv.md');
+  const cvMaster = readRequired(PATHS.cvMaster, 'cv.md');
   const coverMaster = readOptional(PATHS.coverMaster);
   const sections = splitModeSections(readRequired(PATHS.applyPack, 'modes/apply-pack.md'));
   const minSalary = loadMinSalary(profileYml);
